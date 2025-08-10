@@ -3,7 +3,7 @@ import styles from "./PomodoroTimer.module.css";
 
 function PomodoroTimer() {
   // --- 状態管理 ---
-  const WORK_TIME = 1 * 60; // 作業時間（秒）
+  const WORK_TIME = 25 * 60; // 作業時間（秒）
   const BREAK_TIME = 5 * 60; // 休憩時間（秒）
 
   const [timeLeft, setTimeLeft] = useState(WORK_TIME); // 残り時間（秒）

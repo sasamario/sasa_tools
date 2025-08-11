@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import PomodoroTimerSettings from "./PomodoroTimerSettings";
 import styles from "./PomodoroTimer.module.css";
 
 function PomodoroTimer() {
@@ -34,8 +35,9 @@ function PomodoroTimer() {
 
   // タイマー終了時処理
   useEffect(() => {
-    if (timeLeft === 0) {
-      if (mode === "work") {
+    if (timeLeft !== 0) return;
+
+    if (mode === "work") {
         setMode("break");
         sendNotification("25分間の作業終了です。5分間休憩しましょう。");
         setTimeLeft(BREAK_TIME);
@@ -44,7 +46,6 @@ function PomodoroTimer() {
         sendNotification("5分間の休憩終了です。25分間集中して取り組みましょう。");
         setTimeLeft(WORK_TIME);
       }
-    }
   }, [timeLeft, mode]);
 
   const sendNotification = (message: string) => {
@@ -130,6 +131,8 @@ function PomodoroTimer() {
         >
           Reset
         </button>
+
+        <PomodoroTimerSettings />
       </div>
     </div>
   );

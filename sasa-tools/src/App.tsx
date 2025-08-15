@@ -1,21 +1,34 @@
-import PomodoroTimer from "./components/PomodoroTimer/PomodoroTimer";
+import { useState } from 'react';
+import Desktop from './components/Desktop';
+import ToolModal from './components/ToolModal';
+import SampleTool from './tools/SampleTool';
 
-function App() {
+type OpenWindow = {
+  id: string;
+  title: string;
+  content: React.ReactNode;
+};
+
+export default function App() {
+  const openTool = (id: string, title: string, content: React.ReactNode) => {
+    
+  };
+
+  const closeTool = (id: string) => {
+  };
+
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",  // 横中央
-        alignItems: "center",      // 縦中央
-        height: "100vh",           // 画面の高さいっぱい
-        width: "100vw",            // 画面の幅いっぱい
-        margin: 0,
-        padding: 0,
-      }}
-    >
-      <PomodoroTimer />
+    <div style={{ width: '100vw', height: '100vh', background: '#008080', overflow: 'hidden' }}>
+      <Desktop
+        icons={[
+          {
+            id: 'sample',
+            label: 'sample-tool',
+            onClick: () => openTool('sample', 'サンプルツール', <SampleTool />),
+          },
+        ]}
+      />
+      <ToolModal></ToolModal>
     </div>
   );
 }
-
-export default App;

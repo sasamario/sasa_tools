@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import styles from "./PomodoroTimer.module.css";
+import { Button } from "@react95/core";
 
 export default function PomodoroTimer() {
   // --- 状態管理 ---
@@ -116,11 +117,11 @@ export default function PomodoroTimer() {
 
       <div className={styles.buttons}>
         {!isRunning ? (
-          <button onClick={() => setIsRunning(true)}>Start</button>
+          <Button onClick={() => setIsRunning(true)}>Start</Button>
         ) : (
-          <button onClick={() => setIsRunning(false)}>Pause</button>
+          <Button onClick={() => setIsRunning(false)}>Pause</Button>
         )}
-        <button
+        <Button
           onClick={() => {
             setIsRunning(false);
             setMode("work");
@@ -129,7 +130,7 @@ export default function PomodoroTimer() {
           className={styles.resetButton}
         >
           Reset
-        </button>
+        </Button>
       </div>
     </div>
   );

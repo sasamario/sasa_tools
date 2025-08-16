@@ -1,5 +1,5 @@
 // import { useState, useEffect } from 'react';
-import { useModal, Modal, Frame, TaskBar, TitleBar } from '@react95/core';
+import { Modal, Frame, TitleBar } from '@react95/core';
 
 type ToolModalProps = {
   isOpen: boolean;
@@ -20,7 +20,6 @@ export default function ToolModal({ isOpen, id, content, title, onClose }: ToolM
       {/* モーダル要素はDOMの通常フローから独立させるためposition: fixedを適用した要素で囲っている */}
       <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%' }}>
         <Frame display="flex" flexDirection="column" gap="16px" p="20px">
-          <TaskBar />
           {/* @ts-ignore */}
           <Modal id={id} title={title} titleBarOptions={<TitleBar.Close onClick={onClose} />} dragOptions={{
             defaultPosition: {

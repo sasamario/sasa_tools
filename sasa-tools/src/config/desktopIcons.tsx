@@ -1,6 +1,6 @@
-import { Time, Folder } from '@react95/icons';
-import SampleTool from '../tools/SampleTool';
+import { Time, Bookmark } from '@react95/icons';
 import PomodoroTimer from '../tools/PomodoroTimer/PomodoroTimer';
+import CommandCollection from '../tools/CommandCollection/CommandCollection';
 
 export const desktopIcons = [
   {
@@ -10,9 +10,9 @@ export const desktopIcons = [
     content: <PomodoroTimer />,
   },
   {
-    id: 'folder',
-    title: 'folder',
-    icon: <Folder />,
-    content: <SampleTool />,
+    id: 'commands',
+    title: 'Commands',
+    icon: <Bookmark />,
+    content: <CommandCollection />,
   },
 ];

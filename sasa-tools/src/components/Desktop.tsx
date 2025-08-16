@@ -1,24 +1,22 @@
-import { Folder } from '@react95/icons';
+import DesktopIconItem from "./DesktopIconItem";
 
-type DesktopIcon = {
+export type DesktopIcon = {
   id: string;
-  label: string;
-  onClick: () => void;
+  title: string;
+  icon: React.ReactNode;
+  content: React.ReactNode;
 };
 
-export default function Desktop({ icons }: { icons: DesktopIcon[] }) {
+type DesktopProps = {
+  icons: DesktopIcon[];
+};
+
+export default function Desktop({ icons }: DesktopProps) {
   return (
-    <div style={{ padding: 16 }}>
-    {icons.map((icon) => (
-        <div
-          key={icon.id}
-          style={{ width: 80, textAlign: 'center', marginBottom: 20, cursor: 'pointer' }}
-          onClick={icon.onClick}
-        >
-          <Folder style={{ fontSize: '32px', color: 'white' }} />
-          <div style={{ color: 'white', fontSize: 12 }}>{icon.label}</div>
-        </div>
-    ))}
+    <div style={{ padding: 16, display: 'flex', flexWrap: 'wrap' }}>
+      {icons.map((icon) => (
+        <DesktopIconItem id={icon.id} title={icon.title} icon={icon.icon} content={icon.content}></DesktopIconItem>
+      ))}
     </div>
   );
 }

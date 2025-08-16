@@ -22,7 +22,7 @@ export default function ToolModal({ isOpen, id, content, title, onClose }: ToolM
           }
         }}>
           <Modal.Content boxShadow="$in" bgColor="white" p="16px">
-            <Frame as="div" display="flex" flexDirection="column" gap="8px">
+            <Frame as="div" display="flex" flexDirection="column">
               {content}
             </Frame>
           </Modal.Content>

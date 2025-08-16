@@ -1,17 +1,17 @@
-import { Folder, Phone2 } from '@react95/icons';
+import { Time, Folder } from '@react95/icons';
 import SampleTool from '../tools/SampleTool';
 
 export const desktopIcons = [
   {
-    id: 'sample',
-    title: 'サンプルツール',
-    icon: <Folder />,
+    id: 'pomodoro-timer',
+    title: 'Pomodoro Timer',
+    icon: <Time style={{width: 32, height: 32}} />,
     content: <SampleTool />,
   },
   {
-    id: 'memo',
-    title: 'メモ帳',
-    icon: <Phone2 />,
+    id: 'folder',
+    title: 'folder',
+    icon: <Folder />,
     content: <SampleTool />,
   },
 ];

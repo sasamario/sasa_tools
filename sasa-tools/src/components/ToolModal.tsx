@@ -1,4 +1,3 @@
-// import { useState, useEffect } from 'react';
 import { Modal, Frame, TitleBar } from '@react95/core';
 
 type ToolModalProps = {

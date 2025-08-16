@@ -1,0 +1,43 @@
+.container {
+  text-align: center;
+  padding: 2rem;
+}
+
+.circleWrapper {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 1rem;
+}
+
+.circleBackground {
+  stroke: #ddd;
+}
+
+.circleProgress {
+  transition: stroke-dashoffset 0.3s linear;
+}
+
+/* 時間表示部分 */
+.timeDisplay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.buttons {
+  margin-top: 1rem;
+}
+
+button {
+  margin: 0 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+}
+
+.resetButton {
+  margin-left: 0.5rem;
+}

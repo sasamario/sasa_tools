@@ -11,7 +11,7 @@ export default function CommandItem({ command, description }: CommandItemProps) 
   return (
     <Frame display={'flex'} gap="$4" mb="$4">
       <Tooltip text={description} delay={100} style={{ width: '100%'}}>
-        <Input w="100%" fontFamily="monospace" value={command} readOnly/>
+        <Input w="100%" h="100%" fontFamily="monospace" value={command} readOnly/>
       </Tooltip>
       <Button onClick={copyCommand}>
         <Copy />

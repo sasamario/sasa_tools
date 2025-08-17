@@ -10,7 +10,7 @@ export default function CommandItem({ command, description }: CommandItemProps) 
   const copyCommand = () => navigator.clipboard.writeText(command);
   return (
     <Frame display={'flex'} gap="$4" mb="$4">
-      <Input w="100%" fontFamily="monospace" value={command} />
+      <Input w="100%" fontFamily="monospace" value={command} readOnly/>
       <Button onClick={copyCommand}>
         <Copy />
       </Button>

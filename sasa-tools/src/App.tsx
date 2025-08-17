@@ -1,21 +1,12 @@
-import PomodoroTimer from "./components/PomodoroTimer/PomodoroTimer";
+import Desktop from './components/Desktop';
+import { desktopIcons } from './config/desktopIcons';
+import { TaskBar } from "@react95/core";
 
-function App() {
+export default function App() {
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",  // 横中央
-        alignItems: "center",      // 縦中央
-        height: "100vh",           // 画面の高さいっぱい
-        width: "100vw",            // 画面の幅いっぱい
-        margin: 0,
-        padding: 0,
-      }}
-    >
-      <PomodoroTimer />
+    <div style={{ width: '100vw', height: '100vh', background: '#008080', overflow: 'hidden' }}>
+      <Desktop icons={desktopIcons} />
+      <TaskBar />
     </div>
   );
 }
-
-export default App;

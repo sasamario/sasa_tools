@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import PomodoroTimerSettings from "./PomodoroTimerSettings";
 import styles from "./PomodoroTimer.module.css";
+import { Button } from "@react95/core";
 
-function PomodoroTimer() {
+export default function PomodoroTimer() {
   // --- 状態管理 ---
   const WORK_TIME = 25 * 60; // 作業時間（秒）
   const BREAK_TIME = 5 * 60; // 休憩時間（秒）
@@ -117,11 +117,11 @@ function PomodoroTimer() {
 
       <div className={styles.buttons}>
         {!isRunning ? (
-          <button onClick={() => setIsRunning(true)}>Start</button>
+          <Button onClick={() => setIsRunning(true)}>Start</Button>
         ) : (
-          <button onClick={() => setIsRunning(false)}>Pause</button>
+          <Button onClick={() => setIsRunning(false)}>Pause</Button>
         )}
-        <button
+        <Button
           onClick={() => {
             setIsRunning(false);
             setMode("work");
@@ -130,12 +130,8 @@ function PomodoroTimer() {
           className={styles.resetButton}
         >
           Reset
-        </button>
-
-        <PomodoroTimerSettings />
+        </Button>
       </div>
     </div>
   );
 }
-
-export default PomodoroTimer;

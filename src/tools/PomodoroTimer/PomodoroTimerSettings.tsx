@@ -1,5 +1,5 @@
+// おいおい改修する予定
 import { useState, useEffect } from "react";
-import Modal from "../Modal/Modal";
 
 export default function PomodoroTimerSettings() {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);

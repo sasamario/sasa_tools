@@ -30,7 +30,7 @@ export default function DesktopIconItem({ id, title, icon, content}: DesktopIcon
     <>
       <div
         id={id}
-        style={{ width: 80, textAlign: 'center', cursor: 'pointer' }}
+        style={{ width: 80, textAlign: 'center', cursor: 'pointer', marginBottom: 8 }}
         onClick={open}
       >
         {icon}

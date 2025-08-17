@@ -13,7 +13,7 @@ type DesktopProps = {
 
 export default function Desktop({ icons }: DesktopProps) {
   return (
-    <div style={{ padding: 16, display: 'flex', flexWrap: 'wrap' }}>
+    <div style={{ padding: 16, display: 'flex', flexDirection: 'column' }}>
       {icons.map((icon) => (
         <DesktopIconItem key={icon.id} id={icon.id} title={icon.title} icon={icon.icon} content={icon.content}></DesktopIconItem>
       ))}

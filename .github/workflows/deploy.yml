@@ -1,0 +1,54 @@
+name: Deploy sasa-tools to Github Pages
+
+# master ブランチに push されたときに実行
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: read # リポジトリないのコードやファイルを取得する権限
+  pages: write # Github Pagesに成果物をアップロードする権限（デプロイに必要）
+  id-token: write # ワークフローないでOIDCトークンを生成する権限
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # リポジトリをチェックアウト
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Node.js 環境をセットアップ
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      # 依存関係をインストール
+      - name: Install Dependencies
+        run: npm install
+
+      # Vite でビルド
+      - name: Build
+        run: npm run build
+
+      # ビルドしたものをアーティファクト（中間成果物）としてアップロード
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+  deploy:
+      # build成功後に実行
+      needs: build
+      runs-on: ubuntu-latest
+      environment:
+        name: github-pages
+        url: ${{ steps.deployment.outputs.page_url }} # デプロイ後のURLがセットされる
+      steps:
+        # upload-pages-artifactでアップロードしたアーティファクトをGithubPagesにデプロイ
+        - name: Deploy to GitHub Pages
+          id: deployment
+          uses: actions/deploy-pages@v4

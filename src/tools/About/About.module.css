@@ -1,0 +1,7 @@
+.container {
+  margin: 0 16px;
+}
+
+.container h2 {
+  border-bottom: 2px solid #c0c0c0;
+}

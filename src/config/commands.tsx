@@ -12,6 +12,8 @@ export const commands = {
     { command: "docker compose ps", description: "コンテナ一覧、状態の表示" },
     { command: "docker container exec -it [コンテナ名] bash", description: "コンテナに入る" },
     { command: "docker compose up -d", description: "コンテナをまとめてバックグラウンドで起動" },
+    { command: "docker volume ls", description: "Dockerボリュームの一覧を表示" },
+    { command: "docker volume rm [ボリューム名]", description: "Dockerボリュームの削除" },
   ],
   Mysql: [
     { command: "mysql -u [ユーザ名] -p", description: "localhostのMySQLサーバに接続" },

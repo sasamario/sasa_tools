@@ -1,0 +1,29 @@
+.container {
+  margin: 0 16px;
+}
+
+.title {
+  border-bottom: 2px solid #c0c0c0;
+}
+
+.subTitle {
+  margin-top: 8px;
+}
+
+.bathType {
+  font-weight: bold;
+  font-size: 1.3em;
+}
+
+.men {
+  color: deepskyblue;
+}
+
+.women {
+  color: orange;
+}
+
+.infoSmall {
+  font-size: 0.8em;
+  color: gray;
+}

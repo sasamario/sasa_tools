@@ -3,9 +3,9 @@ import styles from "./About.module.css";
 export default function About() {
   return (
     <div className={styles.container}>
-      <h2>About this tool</h2>
+      <h2 className={styles.title}>About this tool</h2>
       <section>
-        <h3>Tech Stack</h3>
+        <h3 className={styles.subTitle}>Tech Stack</h3>
         <ul>
           <li>Language: TypeScript(v5.8.3)</li>
           <li>Library: React(v19.1.1)</li>
@@ -14,7 +14,7 @@ export default function About() {
         </ul>
       </section>
       <section>
-        <h3>Other</h3>
+        <h3 className={styles.subTitle}>Other</h3>
         <ul>
           <li>Service: Github Actions</li>
           <li>Deploy: Github Pages</li>

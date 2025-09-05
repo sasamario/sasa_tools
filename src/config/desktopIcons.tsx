@@ -1,7 +1,8 @@
-import { HelpBook, Time, Bookmark } from '@react95/icons';
+import { HelpBook, Time, Bookmark, Drvspace7 } from '@react95/icons';
 import About from '../tools/About/About';
 import PomodoroTimer from '../tools/PomodoroTimer/PomodoroTimer';
 import CommandCollection from '../tools/CommandCollection/CommandCollection';
+import Kohmeisen from '../tools/Kohmeisen/Kohmeisen';
 
 export const desktopIcons = [
   {
@@ -21,5 +22,11 @@ export const desktopIcons = [
     title: 'Commands',
     icon: <Bookmark />,
     content: <CommandCollection />,
+  },
+  {
+    id: 'kohmeisen',
+    title: `Today's Kohmeisen`,
+    icon: <Drvspace7 />,
+    content: <Kohmeisen />,
   },
 ];

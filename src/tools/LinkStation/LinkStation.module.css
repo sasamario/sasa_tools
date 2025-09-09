@@ -1,0 +1,94 @@
+.container {
+  width: 660px;
+  margin: 0 auto;
+  padding: 8px 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #000;
+}
+
+/* ヘッダー */
+.header {
+  border-bottom: 2px solid #999;
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+.logo {
+  font-size: 28px;
+  font-weight: bold;
+  color: #003399;
+  margin: 0;
+}
+/* 2カラム構成 */
+.main {
+  display: grid;
+  grid-template-columns: 8fr 4fr;
+  gap: 24px; /* 明示的な余白は中央の1frで表現 */
+  margin-bottom: 16px;
+}
+
+/* 左カラム */
+.leftColumn {
+
+}
+.category {
+  margin-bottom: 24px;
+}
+.category h3 {
+  font-size: 16px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 4px;
+  margin-bottom: 8px;
+}
+.category ul {
+  display: flex;
+  flex-wrap: wrap; /* はみ出したら折り返す */
+  gap: 12px;       /* 要素間の余白 */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.category li {
+  margin-bottom: 4px;
+}
+
+/* 右カラム */
+.rightColumn {
+
+}
+.sidebarBox {
+  border: 1px solid #ccc;
+  padding: 8px;
+  margin-bottom: 8px;
+  background: #f9f9f9;
+}
+.sidebarBox h3 {
+  font-size: 14px;
+  margin-top: 0;
+}
+.sidebarBox ul {
+  margin: 8px 0;
+  list-style-type: square;
+  padding-left: 20px;
+}
+
+/* リンク */
+a {
+  color: #0000ee;
+  text-decoration: underline;
+}
+a:visited {
+  color: #551a8b;
+}
+a:hover {
+  background-color: #e0e0ff;
+}
+
+/* フッター */
+.footer {
+  border-top: 1px solid #ccc;
+  padding-top: 8px;
+  font-size: 12px;
+  text-align: center;
+  color: #666;
+}

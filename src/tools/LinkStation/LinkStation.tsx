@@ -13,20 +13,44 @@ export default function LinkStation() {
         {/* 左カラム（6割） */}
         <div className={styles.leftColumn}>
           <section className={styles.category}>
-            <h3>公式ドキュメント</h3>
-            <ul>
-              <li><a href="https://www.prisma.io/docs/orm/prisma-client/queries" target="_blank">Prisma</a></li>
-              <li><a href="" target="_blank">Todo</a></li>
-              <li><a href="" target="_blank">Todo</a></li>
-              <li><a href="" target="_blank">Todo</a></li>
-              <li><a href="" target="_blank">Todo</a></li>
-            </ul>
+            <h3>Prisma Client</h3>
+            <div className={styles.subCategory}>
+              <h4>CRUD</h4>
+              <ul>
+                <li><a href="https://www.prisma.io/docs/orm/prisma-client/queries/crud#create" target="_blank">create</a></li>
+                <li><a href="https://www.prisma.io/docs/orm/prisma-client/queries/crud#create-multiple-records" target="_blank">createMany</a></li>
+                <li><a href="https://www.prisma.io/docs/orm/prisma-client/queries/crud#get-record-by-id-or-unique-identifier" target="_blank">findUnique</a></li>
+                <li><a href="https://www.prisma.io/docs/orm/prisma-client/queries/crud#get-all-records" target="_blank">findMany</a></li>
+                <li><a href="https://www.prisma.io/docs/orm/prisma-client/queries/crud#update-a-single-record" target="_blank">update</a></li>
+                <li><a href="https://www.prisma.io/docs/orm/prisma-client/queries/crud#update-multiple-records" target="_blank">updateMany</a></li>
+                <li><a href="https://www.prisma.io/docs/orm/prisma-client/queries/crud#update-or-create-records" target="_blank">upsert</a></li>
+                <li><a href="https://www.prisma.io/docs/orm/prisma-client/queries/crud#delete-a-single-record" target="_blank">delete</a></li>
+                <li><a href="https://www.prisma.io/docs/orm/prisma-client/queries/crud#delete-multiple-records" target="_blank">deleteMany</a></li>
+              </ul>
+            </div>
+            <div className={styles.subCategory}>
+              <h4>Relation queries</h4>
+                <ul>
+                  <li><a href="https://www.prisma.io/docs/orm/prisma-client/queries/relation-queries#include-a-relation" target="_blank">include</a></li>
+                  <li><a href="https://www.prisma.io/docs/orm/prisma-client/queries/relation-queries#select-specific-fields-of-included-relations" target="_blank">select</a></li>
+                  <li><a href="https://www.prisma.io/docs/orm/prisma-client/queries/relation-queries#nested-writes" target="_blank">Nested writes</a></li>
+                </ul>
+            </div>
+            <div className={styles.subCategory}>
+              <h4>Relation filter</h4>
+              <ul>
+                <li><a href="https://www.prisma.io/docs/orm/reference/prisma-client-reference#some" target="_blank">some</a></li>
+                <li><a href="https://www.prisma.io/docs/orm/reference/prisma-client-reference#none" target="_blank">none</a></li>
+                <li><a href="https://www.prisma.io/docs/orm/reference/prisma-client-reference#is" target="_blank">is</a></li>
+                <li><a href="https://www.prisma.io/docs/orm/reference/prisma-client-reference#isnot" target="_blank">isNot</a></li>
+              </ul>
+            </div>
           </section>
 
           <section className={styles.category}>
             <h3>Todo</h3>
             <ul>
-              <li><a href="https://github.com/" target="_blank">GitHub</a></li>
+              <li><a href="" target="_blank">Todo</a></li>
             </ul>
           </section>
         </div>
@@ -34,27 +58,25 @@ export default function LinkStation() {
         {/* 右カラム（3割） */}
         <aside className={styles.rightColumn}>
           <div className={styles.sidebarBox}>
-            <h3>OSS貢献</h3>
+            <h3>便利ツール</h3>
             <ul>
-              <li><a href="https://github.com/thorsten/phpMyFAQ" target="_blank">phpMyFAQ</a></li>
+              <li><a href="https://www-creators.com/tool/regex-checker" target="_blank">正規表現チェッカー</a></li>
+              <li><a href="https://codic.jp/engine" target="_blank">codic</a></li>
+              <li><a href="https://paiza.io/ja/projects/new" target="_blank">paiza.io</a></li>
             </ul>
           </div>
 
           <div className={styles.sidebarBox}>
-            <h3>制作物</h3>
+            <h3>Todo</h3>
             <ul>
-              <li><a href="https://sasamario.github.io/sasa_tools/" target="_blank">業務効率化ツール</a></li>
-              <li><a href="https://github.com/sasamario/sasatora" target="_blank">自動チャイム叩き機</a></li>
-              <li><a href="https://github.com/sasamario/chrome_memo" target="_blank">メモ（Chrome拡張）</a></li>
-              <li><a href="https://github.com/sasamario/CheatingDice" target="_blank">サイコロアプリ</a></li>
+              <li><a href="" target="_blank">Todo</a></li>
             </ul>
           </div>
 
           <div className={styles.sidebarBox}>
-            <h3>所持資格</h3>
+            <h3>Todo</h3>
             <ul>
-              <li><a href="https://www.ipa.go.jp/shiken/kubun/ap.html" target="_blank">応用情報技術者</a></li>
-              <li><a href="https://www.ipa.go.jp/shiken/kubun/fe.html" target="_blank">基本情報技術者</a></li>
+              <li><a href="" target="_blank">Todo</a></li>
             </ul>
           </div>
         </aside>

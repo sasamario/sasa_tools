@@ -2,6 +2,10 @@ import { useState, useEffect } from "react";
 import styles from "./PomodoroTimer.module.css";
 import { Button } from "@react95/core";
 
+export const WORK = "work";
+export const BREAK = "break";
+export type PomodoroMode = typeof WORK | typeof BREAK;
+
 export default function PomodoroTimer() {
   // --- 状態管理 ---
   const WORK_TIME = 25 * 60; // 作業時間（秒）
@@ -9,15 +13,14 @@ export default function PomodoroTimer() {
 
   const [timeLeft, setTimeLeft] = useState(WORK_TIME); // 残り時間（秒）
   const [isRunning, setIsRunning] = useState(false); // タイマー動作中か
-  const [mode, setMode] = useState<"work" | "break">("work"); // 作業/休憩モード
+  const [mode, setMode] = useState<PomodoroMode>(WORK); // 作業/休憩モード
 
-  // 初回マウント時に通知許可をリクエスト
-  useEffect(() => {
-    // NotificationAPIに対応しているか確認（windowオブジェクト内にNotificationプロパティがあれば対応している）
-    if ("Notification" in window) {
-      Notification.requestPermission();
-    }
-  }, []);
+  const changeMode = (currentMode: PomodoroMode) => {
+    const nextMode = currentMode === WORK ? BREAK : WORK;
+    const nextTime = nextMode === WORK ? WORK_TIME : BREAK_TIME;
+    setMode(nextMode);
+    setTimeLeft(nextTime);
+  };
 
   // --- タイマーの処理 ---
   // 第二引数の依存配列に指定している、isRunnningやmodeの値が変わるタイミングで第一引数のコールバック関数が実行される
@@ -33,26 +36,23 @@ export default function PomodoroTimer() {
     return () => clearInterval(timer);
   }, [isRunning]);
 
-  // タイマー終了時処理
+  // タイマー停止処理
   useEffect(() => {
-    if (timeLeft !== 0) return;
-
-    if (mode === "work") {
-        setMode("break");
-        sendNotification("25分間の作業終了です。5分間休憩しましょう。");
-        setTimeLeft(BREAK_TIME);
-      } else {
-        setMode("work");
-        sendNotification("5分間の休憩終了です。25分間集中して取り組みましょう。");
-        setTimeLeft(WORK_TIME);
-      }
-  }, [timeLeft, mode]);
-
-  const sendNotification = (message: string) => {
-    if ("Notification" in window && Notification.permission === "granted") {
-      new Notification(message);
+    if (isRunning && timeLeft === 0) {
+      setIsRunning(false);
     }
-  };
+  }, [timeLeft, isRunning]);
+
+  // タイマー終了処理（タイマー停止後に実行）
+  useEffect(() => {
+    if (timeLeft !== 0 || isRunning) return;
+
+    const confirm = window.confirm("タイマーが終了しました。次のモードを開始しますか？");
+    changeMode(mode);
+    if (confirm) {
+      setIsRunning(true)
+    }
+  }, [timeLeft, isRunning, mode]);
 
   // --- 時間表示を mm:ss に変換 ---
   const formatTime = (seconds: number) => {
@@ -64,8 +64,8 @@ export default function PomodoroTimer() {
   // --- 円形プログレスバー用計算 ---
   const radius = 54; // 半径
   const circumference = 2 * Math.PI * radius; // 円周
-  const totalTime = mode === "work" ? WORK_TIME : BREAK_TIME;
-  const progress = timeLeft / totalTime; // 進捗
+  const totalTime = mode === WORK ? WORK_TIME : BREAK_TIME;
+  const progress = timeLeft === 0 ? 0 : timeLeft / totalTime; // 進捗
   const dashoffset = circumference * (1 - progress); // 残り
 
   return (
@@ -101,7 +101,7 @@ export default function PomodoroTimer() {
             cx="60"
             cy="60"
             r={radius}
-            stroke={mode === "work" ? "tomato" : "mediumseagreen"}
+            stroke={mode === WORK ? "tomato" : "mediumseagreen"}
             strokeWidth="12"
             fill="none"
             strokeDasharray={circumference}
@@ -113,7 +113,7 @@ export default function PomodoroTimer() {
         <div className={styles.timeDisplay}>{formatTime(timeLeft)}</div>
       </div>
 
-      <p>Mode: {mode === "work" ? "Work" : "Break"}</p>
+      <p>Mode: {mode === WORK ? "Work" : "Break"}</p>
 
       <div className={styles.buttons}>
         {!isRunning ? (
@@ -124,7 +124,7 @@ export default function PomodoroTimer() {
         <Button
           onClick={() => {
             setIsRunning(false);
-            setMode("work");
+            setMode(WORK);
             setTimeLeft(WORK_TIME);
           }}
           className={styles.resetButton}

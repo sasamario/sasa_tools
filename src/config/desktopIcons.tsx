@@ -1,17 +1,11 @@
-import { HelpBook, Time, Bookmark, Drvspace7, Explore } from '@react95/icons';
-import About from '../tools/About/About';
+import { Time, Bookmark, Drvspace7, Explore, Calculator } from '@react95/icons';
 import PomodoroTimer from '../tools/PomodoroTimer/PomodoroTimer';
 import CommandCollection from '../tools/CommandCollection/CommandCollection';
 import Kohmeisen from '../tools/Kohmeisen/Kohmeisen';
 import LinkStation from '../tools/LinkStation/LinkStation';
+import CharacterCount from '../tools/CharacterCount/CharacterCount';
 
 export const desktopIcons = [
-  {
-    id: 'About',
-    title: 'About this tool',
-    icon: <HelpBook style={{width: 32, height: 32}} />,
-    content: <About />,
-  },
   {
     id: 'pomodoro-timer',
     title: 'Pomodoro Timer',
@@ -35,5 +29,11 @@ export const desktopIcons = [
     title: `LinkStation`,
     icon: <Explore />,
     content: <LinkStation />,
+  },
+  {
+    id: 'character-count',
+    title: `Character Count`,
+    icon: <Calculator />,
+    content: <CharacterCount />,
   },
 ];

@@ -1,0 +1,11 @@
+.container {
+  margin: 0 16px;
+}
+
+.title {
+  border-bottom: 2px solid #c0c0c0;
+}
+
+.main {
+  margin-top: 8px;
+}

@@ -8,10 +8,10 @@ export default function CommandCollection() {
   return (
     <Tabs width="650px">
       {categories.map((category) => (
-        <Tab title={category}>
+        <Tab key={category} title={category}>
           {/* keyof typeof commandsでcommandsのキーのみ許可される型となる */}
           {commands[category as keyof typeof commands].map((c) => (
-            <CommandItem command={c.command} description={c.description} />
+            <CommandItem key={c.command} command={c.command} description={c.description} />
           ))}
         </Tab>
       ))}

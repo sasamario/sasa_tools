@@ -1,0 +1,15 @@
+.container {
+  margin: 0 16px;
+}
+
+.title {
+  border-bottom: 2px solid #c0c0c0;
+}
+
+.subTitle {
+  margin-top: 8px;
+}
+
+.base64Input {
+  width: 250px;
+}

@@ -1,9 +1,10 @@
-import { Time, Bookmark, Drvspace7, Explore, Calculator } from '@react95/icons';
+import { Time, Bookmark, Drvspace7, Explore, Calculator, Packager1 } from '@react95/icons';
 import PomodoroTimer from '../tools/PomodoroTimer/PomodoroTimer';
 import CommandCollection from '../tools/CommandCollection/CommandCollection';
 import Kohmeisen from '../tools/Kohmeisen/Kohmeisen';
 import LinkStation from '../tools/LinkStation/LinkStation';
 import CharacterCount from '../tools/CharacterCount/CharacterCount';
+import Conversion from '../tools/Conversion/Conversion';
 
 export const desktopIcons = [
   {
@@ -35,5 +36,11 @@ export const desktopIcons = [
     title: `Character Count`,
     icon: <Calculator />,
     content: <CharacterCount />,
+  },
+  {
+    id: 'conversion',
+    title: `Conversion Tools`,
+    icon: <Packager1 />,
+    content: <Conversion />,
   },
 ];

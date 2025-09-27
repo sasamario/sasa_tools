@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import styles from "./PomodoroTimer.module.css";
 import { Button } from "@react95/core";
 
@@ -15,6 +15,9 @@ export default function PomodoroTimer() {
   const [isRunning, setIsRunning] = useState(false); // タイマー動作中か
   const [mode, setMode] = useState<PomodoroMode>(WORK); // 作業/休憩モード
 
+  // 常に最新の値を参照するためにuseStateではなくuseRefを使用
+  const startTimestamp = useRef<number | null>(null); // タイマー開始時のタイムスタンプ
+
   const changeMode = (currentMode: PomodoroMode) => {
     const nextMode = currentMode === WORK ? BREAK : WORK;
     const nextTime = nextMode === WORK ? WORK_TIME : BREAK_TIME;
@@ -22,14 +25,37 @@ export default function PomodoroTimer() {
     setTimeLeft(nextTime);
   };
 
+  // 経過時間の計算処理
+  const calculateElapsed = (startTimestamp: number | null) => {
+    const elapsed = Math.floor((Date.now() - (startTimestamp ?? Date.now())) / 1000); // 経過時間（秒）
+    return elapsed;
+  }
+
   // --- タイマーの処理 ---
   // 第二引数の依存配列に指定している、isRunnningやmodeの値が変わるタイミングで第一引数のコールバック関数が実行される
   useEffect(() => {
-    if (!isRunning) return;
+    // タイマー停止時の処理
+    if (!isRunning) {
+      startTimestamp.current = null; // タイマー停止時にリセット
+      return;
+    }
 
+    // タイマー開始時点のタイムスタンプを保存
+    if (!startTimestamp.current) {
+      startTimestamp.current = Date.now();
+    }
+
+    // 500msごとに残り時間を再計算
     const timer = setInterval(() => {
-      setTimeLeft((prev) => prev > 0 ? prev -1 : 0);
-    }, 1000);
+      const elapsed = calculateElapsed(startTimestamp.current);
+      const newTimeLeft = timeLeft - elapsed;
+      if (newTimeLeft > 0) {
+        setTimeLeft(newTimeLeft);
+      } else {
+        setTimeLeft(0);
+        startTimestamp.current = null; // タイマー停止時にリセット
+      }
+    }, 500);
 
     // クリーンアップ（停止処理）
     // 不要な処理が動き続けるのを防ぐため、前のuseEffectで動かしていたsetIntervalを取り消している。
@@ -125,6 +151,7 @@ export default function PomodoroTimer() {
           onClick={() => {
             setIsRunning(false);
             setMode(WORK);
+            startTimestamp.current = null; // タイマー停止時にリセット
             setTimeLeft(WORK_TIME);
           }}
           className={styles.resetButton}

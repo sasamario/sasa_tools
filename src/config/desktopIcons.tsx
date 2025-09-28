@@ -1,6 +1,7 @@
-import { Time, Bookmark, Drvspace7, Explore, Calculator, Packager1 } from '@react95/icons';
+import { Time, Bookmark, Drvspace7, Explore, Calculator, Packager1, Fm20enu5 } from '@react95/icons';
 import PomodoroTimer from '../tools/PomodoroTimer/PomodoroTimer';
 import CommandCollection from '../tools/CommandCollection/CommandCollection';
+import CommandBuilder from '../tools/CommandBuilder/CommandBuilder';
 import Kohmeisen from '../tools/Kohmeisen/Kohmeisen';
 import LinkStation from '../tools/LinkStation/LinkStation';
 import CharacterCount from '../tools/CharacterCount/CharacterCount';
@@ -18,6 +19,12 @@ export const desktopIcons = [
     title: 'Commands',
     icon: <Bookmark />,
     content: <CommandCollection />,
+  },
+  {
+    id: 'command-builder',
+    title: 'Command Builder',
+    icon: <Fm20enu5 />,
+    content: <CommandBuilder />,
   },
   {
     id: 'kohmeisen',

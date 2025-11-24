@@ -9,6 +9,7 @@ export default function CommandBuilder() {
         <Tab key={key} title={key}>
           <CommandBuilderItem
             key={item.command}
+            command={item.command}
             description={item.description}
             syntax={item.syntax}
             options={item.options}

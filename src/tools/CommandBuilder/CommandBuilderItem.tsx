@@ -1,7 +1,8 @@
 import styles from "./CommandBuilder.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Frame, Input, Button, Tooltip, Fieldset, Checkbox } from "@react95/core";
 import { Copy, Tick } from "@react95/icons";
+import CommandBuilderGrep from "./CommandBuilderGrep";
 
 type Option = {
   option: string,
@@ -10,15 +11,33 @@ type Option = {
 }
 
 type CommandProps = {
+  command: string,
   description: string,
   syntax: string,
   options?: Option[],
 }
 
-export default function CommandBuilderItem({ description, syntax, options }: CommandProps) {
+export default function CommandBuilderItem({ command, description, syntax, options }: CommandProps) {
   const [copied, setCopied] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+  const [parameters, setParameters] = useState<{ [key: string]: string }>({});
   const [buildCommand, setBuildCommand] = useState("");
+
+  // コマンドを組み立てる
+  useEffect(() => {
+    let buildCommand = syntax;
+
+    // オプション部分の組み立て
+    const optionsPart = selectedOptions.length > 0 ? `-${selectedOptions.join("")}` : "[options]";
+    buildCommand = buildCommand.replace("[options]", optionsPart);
+
+    // パラメータ部分の組み立て
+    Object.entries(parameters).forEach(([key, value]) => {
+      buildCommand = buildCommand.replace(key, value);
+    });
+    
+    setBuildCommand(buildCommand);
+  }, [syntax, parameters, selectedOptions]);
 
   const copyCommand = async () => {
     try {
@@ -30,7 +49,8 @@ export default function CommandBuilderItem({ description, syntax, options }: Com
     }
   };
 
-  const handleShortOptionChange = (option: string, checked: boolean) => {
+  // オプション更新
+  const updateCommandOptions = (option: string, checked: boolean) => {
     let newOptions: string[];
     if (checked) {
       newOptions = [...selectedOptions, option];
@@ -38,13 +58,21 @@ export default function CommandBuilderItem({ description, syntax, options }: Com
       newOptions = selectedOptions.filter((o) => o !== option);
     }
     setSelectedOptions(newOptions);
-
-    const optionsPart = newOptions.length > 0 ? `-${newOptions.join("")}` : "[options]";
-    const buildCommand = syntax.replace("[options]", optionsPart);
-
-    // コマンド組み立て
-    setBuildCommand(buildCommand);
   };
+
+  // パラメータ更新
+  const updateCommandParameters = (replaceText: string, replaceValue: string) => {
+    // replaceValueが空の場合は、parametersから削除
+    if (replaceValue.trim() === "") {
+      // _は、任意の変数名で、ここでは使わないことを示す
+      // 分割代入でkeyがreplaceTextの値を_として取得。それ以外をrestとして受け取る（要はreplaceTextを削除している）
+      const { [replaceText]: _, ...rest } = parameters;
+      setParameters(rest);
+    } else {
+      setParameters((prev) => ({ ...prev, [replaceText]: replaceValue }));
+    }
+  }
+  
 
   return (
     <Frame
@@ -74,37 +102,18 @@ export default function CommandBuilderItem({ description, syntax, options }: Com
               <Checkbox
                 key={idx}
                 checked={selectedOptions.includes(o.option)}
-                onChange={(e) => handleShortOptionChange(o.option, e.currentTarget.checked)}
+                onChange={(e) => updateCommandOptions(o.option, e.currentTarget.checked)}
               >
                 {`${o.option} : ${o.description}`}
               </Checkbox>
             ))}
           </Frame>
         </Fieldset>
-        {/* <Fieldset legend="Options(required param)">
-          <Frame
-            display="flex"
-            flexDirection="column"
-            gap="$2"
-          >
-            {options
-              .filter((o) => o.type === "short-arg")
-              .map((o, idx) => (
-                <div key={idx} className={styles.optionWithInput}>
-                  <Checkbox
-                    key={idx}
-                    checked={selectedOptions.includes(o.option)}
-                  >
-                    {`${o.option} : ${o.description}`}
-                  </Checkbox>
-                  <Input
-                    className={styles.optionInput}
-                    value=""
-                  />
-                </div>
-            ))}
-          </Frame>
-        </Fieldset> */}
+        {command === "grep" && (
+          <CommandBuilderGrep
+            updateCommandParameters={updateCommandParameters}
+          />
+        )}
       </div>
     </Frame>
   );

@@ -2,7 +2,7 @@ export const commandBuilder = {
   grep: {
     command: "grep",
     description: "指定したパターンを含む行を検索する",
-    syntax: "grep [options] <pattern> [file...]",
+    syntax: "grep [options] <pattern> [file]",
     options: [
       { option: "i", description: "大文字と子文字を区別しない", type: "short" },
       { option: "E", description: "拡張正規表現を使用", type: "short" },

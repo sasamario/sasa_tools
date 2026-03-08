@@ -1,7 +1,20 @@
 export const commands = {
   // 雛形 { command: "", description: "" },
+  Laravel: [
+    { command: "php artisan make:controller [コントローラー名] --invokable", description: "__invoke()だけ持つコントローラー作成" },
+    { command: "php artisan make:model [モデル名]", description: "モデル作成" },
+    { command: "php artisan make:request [リクエスト名]", description: "リクエスト作成" },
+    { command: "php artisan make:middleware [ミドルウェア名]", description: "ミドルウェア作成" },
+    { command: "php artisan make:component [コンポーネント名] --view", description: "viewだけのコンポーネント作成" },
+    { command: "php artisan config:cache", description: "設定のキャッシュ作成" },
+    { command: "php artisan config:clear", description: "設定のキャッシュ削除" },
+    { command: "php artisan route:cache", description: "ルートのキャッシュ作成" },
+    { command: "php artisan route:clear", description: "ルートのキャッシュ削除" },
+  ],
   Git: [
-    { command: `git commit --no-veryfy -m "[コミットメッセージ]"`, description: "コミット時フック無効化、メッセージ指定" },
+    { command: "git reset --soft HEAD~1", description: "直前のコミットを取り消す（ステージ上とファイルの変更は保持）" },
+    { command: "git commit --amend", description: "直前のコミットを修正（コミットメッセージ変更、ファイル追加漏れ等）" },
+    { command: `git commit --no-verify -m "[コミットメッセージ]"`, description: "コミット時フック無効化、メッセージ指定" },
     { command: "git checkout -b [ブランチ名]", description: "ブランチを作成し切り替える" },
     { command: "git diff origin/[ブランチ1]..origin/[ブランチ2]", description: "リモートブランチ1とリモートブランチ2間の比較" },
     { command: "git cherry-pick [コミットハッシュA] [コミットハッシュB] [コミットハッシュC]", description: "AとBとCのコミットを取り込む" },

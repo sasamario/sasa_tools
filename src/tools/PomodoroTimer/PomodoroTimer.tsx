@@ -10,6 +10,14 @@ export default function PomodoroTimer() {
   // --- 状態管理 ---
   const WORK_TIME = 25 * 60; // 作業時間（秒）
   const BREAK_TIME = 5 * 60; // 休憩時間（秒）
+  const MODE_CHANGE_NOTICE_TITLE = {
+    [WORK]: "作業時間が終了しました。",
+    [BREAK]: "休憩時間が終了しました。",
+  };
+  const MODE_CHANGE_NOTICE_BODY = {
+    [WORK]: "作業お疲れ様です。\nゆっくり休んでください。",
+    [BREAK]: "休憩お疲れ様です。\nまた頑張りましょう。",
+  };
 
   const [timeLeft, setTimeLeft] = useState(WORK_TIME); // 残り時間（秒）
   const [isRunning, setIsRunning] = useState(false); // タイマー動作中か
@@ -73,11 +81,16 @@ export default function PomodoroTimer() {
   useEffect(() => {
     if (timeLeft !== 0 || isRunning) return;
 
-    const confirm = window.confirm("タイマーが終了しました。次のモードを開始しますか？");
-    changeMode(mode);
-    if (confirm) {
-      setIsRunning(true)
+    // 通知を表示
+    if (Notification.permission === "granted") {
+      new Notification(MODE_CHANGE_NOTICE_TITLE[mode], {
+        body: `${MODE_CHANGE_NOTICE_BODY[mode]}`,
+        tag: "pomodoro-timer",
+      });
     }
+
+    // モード切替
+    changeMode(mode);
   }, [timeLeft, isRunning, mode]);
 
   // --- 時間表示を mm:ss に変換 ---
@@ -86,6 +99,20 @@ export default function PomodoroTimer() {
     const s = String(seconds % 60).padStart(2, "0");
     return `${m}:${s}`;
   };
+
+  // --- 通知の許可をリクエスト ---
+  const requestNotificationPermission = async () => {
+    console.log('Notification permission: ' + Notification.permission);
+    if (Notification.permission === "default") {
+      await Notification.requestPermission();
+    }
+  };
+
+  // --- タイマースタート処理 ---
+  const handleStart = async () => {
+    await requestNotificationPermission();
+    setIsRunning(true);
+  }
 
   // --- 円形プログレスバー用計算 ---
   const radius = 54; // 半径
@@ -143,7 +170,9 @@ export default function PomodoroTimer() {
 
       <div className={styles.buttons}>
         {!isRunning ? (
-          <Button onClick={() => setIsRunning(true)}>Start</Button>
+          <Button onClick={handleStart}>
+            Start
+          </Button>
         ) : (
           <Button onClick={() => setIsRunning(false)}>Pause</Button>
         )}

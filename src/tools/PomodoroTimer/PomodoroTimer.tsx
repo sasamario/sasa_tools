@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import styles from "./PomodoroTimer.module.css";
 import { Button } from "@react95/core";
+import PomodoroTimerSettings from "./PomodoroTimerSettings";
 
 export const WORK = "work";
 export const BREAK = "break";
@@ -8,8 +9,8 @@ export type PomodoroMode = typeof WORK | typeof BREAK;
 
 export default function PomodoroTimer() {
   // --- 状態管理 ---
-  const WORK_TIME = 25 * 60; // 作業時間（秒）
-  const BREAK_TIME = 5 * 60; // 休憩時間（秒）
+  const [workTime, setWorkTime] = useState(25 * 60); // 作業時間（秒）
+  const [breakTime, setBreakTime] = useState(5 * 60); // 休憩時間（秒）
   const MODE_CHANGE_NOTICE_TITLE = {
     [WORK]: "作業時間が終了しました。",
     [BREAK]: "休憩時間が終了しました。",
@@ -19,18 +20,48 @@ export default function PomodoroTimer() {
     [BREAK]: "休憩お疲れ様です。\nまた頑張りましょう。",
   };
 
-  const [timeLeft, setTimeLeft] = useState(WORK_TIME); // 残り時間（秒）
+  const [timeLeft, setTimeLeft] = useState(workTime); // 残り時間（秒）
   const [isRunning, setIsRunning] = useState(false); // タイマー動作中か
   const [mode, setMode] = useState<PomodoroMode>(WORK); // 作業/休憩モード
+  const [showSettings, setShowSettings] = useState(false); // 設定画面表示フラグ
 
   // 常に最新の値を参照するためにuseStateではなくuseRefを使用
   const startTimestamp = useRef<number | null>(null); // タイマー開始時のタイムスタンプ
 
+  // localStorageから設定を読み込む
+  useEffect(() => {
+    const savedSettings = localStorage.getItem("pomodoro-timer-settings");
+    if (savedSettings) {
+      try {
+        const { workTime: savedWorkTime, breakTime: savedBreakTime } = JSON.parse(savedSettings);
+        setWorkTime(savedWorkTime * 60); // 分を秒に変換
+        setBreakTime(savedBreakTime * 60); // 分を秒に変換
+        setTimeLeft(savedWorkTime * 60); // 初期表示も更新
+      } catch (error) {
+        console.error("設定の読み込みに失敗しました:", error);
+      }
+    }
+  }, []);
+
   const changeMode = (currentMode: PomodoroMode) => {
     const nextMode = currentMode === WORK ? BREAK : WORK;
-    const nextTime = nextMode === WORK ? WORK_TIME : BREAK_TIME;
+    const nextTime = nextMode === WORK ? workTime : breakTime;
     setMode(nextMode);
     setTimeLeft(nextTime);
+  };
+
+  // 設定変更時の処理
+  const handleSettingsChange = (newWorkTime: number, newBreakTime: number) => {
+    const workTimeInSeconds = newWorkTime * 60;
+    const breakTimeInSeconds = newBreakTime * 60;
+    setWorkTime(workTimeInSeconds);
+    setBreakTime(breakTimeInSeconds);
+
+    // タイマーをリセット
+    setIsRunning(false);
+    setMode(WORK);
+    setTimeLeft(workTimeInSeconds);
+    startTimestamp.current = null;
   };
 
   // 経過時間の計算処理
@@ -83,6 +114,7 @@ export default function PomodoroTimer() {
 
     // 通知を表示
     if (Notification.permission === "granted") {
+      console.log(MODE_CHANGE_NOTICE_TITLE[mode] + "\n" + MODE_CHANGE_NOTICE_BODY[mode]);
       new Notification(MODE_CHANGE_NOTICE_TITLE[mode], {
         body: `${MODE_CHANGE_NOTICE_BODY[mode]}`,
         tag: "pomodoro-timer",
@@ -117,7 +149,7 @@ export default function PomodoroTimer() {
   // --- 円形プログレスバー用計算 ---
   const radius = 54; // 半径
   const circumference = 2 * Math.PI * radius; // 円周
-  const totalTime = mode === WORK ? WORK_TIME : BREAK_TIME;
+  const totalTime = mode === WORK ? workTime : breakTime;
   const progress = timeLeft === 0 ? 0 : timeLeft / totalTime; // 進捗
   const dashoffset = circumference * (1 - progress); // 残り
 
@@ -181,13 +213,25 @@ export default function PomodoroTimer() {
             setIsRunning(false);
             setMode(WORK);
             startTimestamp.current = null; // タイマー停止時にリセット
-            setTimeLeft(WORK_TIME);
+            setTimeLeft(workTime);
           }}
           className={styles.resetButton}
         >
           Reset
         </Button>
+        <Button onClick={() => setShowSettings(true)} className={styles.settingsButton}>
+          Settings
+        </Button>
       </div>
+      {/* 設定画面 */}
+      {showSettings && (
+        <PomodoroTimerSettings
+          workTime={workTime / 60} // 秒を分に変換
+          breakTime={breakTime / 60} // 秒を分に変換
+          onSettingsChange={handleSettingsChange}
+          onClose={() => setShowSettings(false)}
+        />
+      )}
     </div>
   );
 }

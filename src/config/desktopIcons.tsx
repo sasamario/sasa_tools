@@ -1,4 +1,4 @@
-import { Time, Bookmark, Drvspace7, Explore, Calculator, Packager1, Fm20enu5 } from '@react95/icons';
+import { Time, Bookmark, Drvspace7, Explore, Calculator, Packager1, Fm20enu5, Notepad2 } from '@react95/icons';
 import PomodoroTimer from '../tools/PomodoroTimer/PomodoroTimer';
 import CommandCollection from '../tools/CommandCollection/CommandCollection';
 import CommandBuilder from '../tools/CommandBuilder/CommandBuilder';
@@ -6,6 +6,7 @@ import Kohmeisen from '../tools/Kohmeisen/Kohmeisen';
 import LinkStation from '../tools/LinkStation/LinkStation';
 import CharacterCount from '../tools/CharacterCount/CharacterCount';
 import Conversion from '../tools/Conversion/Conversion';
+import CharacterGenerator from '../tools/CharacterGenerator/CharacterGenerator';
 
 export const desktopIcons = [
   {
@@ -37,6 +38,12 @@ export const desktopIcons = [
     title: `LinkStation`,
     icon: <Explore />,
     content: <LinkStation />,
+  },
+  {
+    id: 'character-generator',
+    title: `Character Generator`,
+    icon: <Notepad2 />,
+    content: <CharacterGenerator />,
   },
   {
     id: 'character-count',

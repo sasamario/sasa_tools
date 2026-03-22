@@ -1,0 +1,56 @@
+.container {
+  padding: 16px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  margin: 0 0 8px 0;
+  font-size: 20px;
+  border-bottom: 2px solid #c0c0c0;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.numberInput {
+  width: 100px;
+  padding: 6px;
+  border: 1px solid #999;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.resultText {
+  min-height: 100px;
+  padding: 8px;
+  border: 1px solid #999;
+  border-radius: 4px;
+  font-family: monospace;
+  word-break: break-all;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 8px;
+}
+
+.button {
+  flex: 1;
+  padding: 8px 16px;
+}

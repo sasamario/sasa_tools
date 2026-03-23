@@ -117,7 +117,6 @@ export default function PomodoroTimer() {
       console.log(MODE_CHANGE_NOTICE_TITLE[mode] + "\n" + MODE_CHANGE_NOTICE_BODY[mode]);
       new Notification(MODE_CHANGE_NOTICE_TITLE[mode], {
         body: `${MODE_CHANGE_NOTICE_BODY[mode]}`,
-        tag: "pomodoro-timer",
       });
     }
 

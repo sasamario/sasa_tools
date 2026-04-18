@@ -7,8 +7,8 @@ export default function About() {
       <section>
         <h3 className={styles.subTitle}>Tech Stack</h3>
         <ul>
-          <li>Language: TypeScript(v5.8.3)</li>
-          <li>Library: React(v19.1.1)</li>
+          <li>Language: TypeScript</li>
+          <li>Library: React</li>
           <li>UI Component: React95</li>
           <li>Build Tool: Vite</li>
         </ul>

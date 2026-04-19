@@ -13,6 +13,7 @@ export default function CommandBuilder() {
             description={item.description}
             syntax={item.syntax}
             options={item.options}
+            memo={item.memo}
           />
         </Tab>
       ))}

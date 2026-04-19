@@ -16,6 +16,33 @@ export const commandBuilder = {
       { option: "n", description: "行番号を表示", type: "short" },
       { option: "v", description: "パターンに一致しない行を表示", type: "short" },
     ],
+    memo: "",
+  },
+  find: {
+    command: "find",
+    description: "ファイルやディレクトリを検索する",
+    syntax: "find [path] [options]",
+    options: [
+      { option: "empty", description: "空のファイルやディレクトリを検索", type: "short" },
+      { option: "type <type>", description: "指定したタイプのファイルを検索（f=通常のファイル、d=ディレクトリなど）", type: "long" },
+      { option: "name <pattern>", description: "名前がパターンに一致するファイル（ディレクトリ）を検索", type: "long" },
+      { option: "iname <pattern>", description: "nameオプションの大文字と小文字を区別しない版", type: "long" },
+      { option: "printf <format>", description: "検索結果の出力形式を指定（例：%pはファイルのパス）", type: "long" },
+      { option: "size <size>", description: "指定したサイズのファイルを検索（例：+100Mは100MBより大きいファイル）", type: "long" },
+      { option: "mtime <days>", description: "指定した日数以内に変更されたファイルを検索（例：-7は7日以内に変更されたファイル）", type: "long" },
+    ],
+    memo: "■条件の組み合わせ\n"
+      + "-a(-and) AND条件（省略可）\n"
+      + "-o(-or): OR条件（指定条件によってはカッコで区切ること）\n"
+      + "! (-not): NOT条件\n"
+      + "\n"
+      + "■printfのパターン\n"
+      + "%p ファイルのフルパス\n"
+      + "%f ファイル名\n"
+      + "%t ファイルのタイプ\n"
+      + "%s ファイルサイズ（バイト）\n"
+      + "%TY-%Tm-%Td %TH:%TM:%TS 最終更新日時（例：2024-01-01 12:00:00）\n"
+      + "\\n 改行",
   },
   ls: {
     command: "ls",
@@ -29,5 +56,6 @@ export const commandBuilder = {
       { option: "p", description: "ディレクトリの末尾に「/」をつける", type: "short" },
       { option: "F", description: "ファイルの種類ごとに識別記号をつける", type: "short" },
     ],
+    memo: "",
   }
 }

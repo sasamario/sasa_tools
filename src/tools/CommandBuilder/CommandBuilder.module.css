@@ -9,14 +9,29 @@
   width: 100%;
 }
 
-/* .optionWithInput {
+.memo {
+  white-space: pre-wrap;
+}
+
+.optionWithInput {
   display: flex;
-  align-items: center;
-  gap: 16px;
-  width: 100%;
-  margin-bottom: 4px;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px;
+  border-bottom: 1px solid #868a8e;
+  box-shadow: 0px 1px 0 0 #e6e6e6;
+}
+
+.optionCheckboxRow {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.optionDescription {
+  color: #666;
 }
 
 .optionInput {
-  flex: 1;
-} */
+  width: 100%;
+}

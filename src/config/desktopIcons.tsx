@@ -1,12 +1,13 @@
-import { Time, Bookmark, Drvspace7, Explore, Calculator, Packager1, Fm20enu5, Notepad2 } from '@react95/icons';
+import { Time, Bookmark, Drvspace7, Explore, Calculator, Packager1, Fm20enu5, Notepad2, FileFind2 } from '@react95/icons';
 import PomodoroTimer from '../tools/PomodoroTimer/PomodoroTimer';
 import CommandCollection from '../tools/CommandCollection/CommandCollection';
 import CommandBuilder from '../tools/CommandBuilder/CommandBuilder';
 import Kohmeisen from '../tools/Kohmeisen/Kohmeisen';
-import LinkStation from '../tools/LinkStation/LinkStation';
+// import LinkStation from '../tools/LinkStation/LinkStation';
 import CharacterCount from '../tools/CharacterCount/CharacterCount';
 import Conversion from '../tools/Conversion/Conversion';
 import CharacterGenerator from '../tools/CharacterGenerator/CharacterGenerator';
+import YarnAuditViewer from '../tools/YarnAuditViewer/YarnAuditViewer';
 
 export const desktopIcons = [
   {
@@ -33,12 +34,12 @@ export const desktopIcons = [
     icon: <Drvspace7 />,
     content: <Kohmeisen />,
   },
-  {
-    id: 'link-station',
-    title: `LinkStation`,
-    icon: <Explore />,
-    content: <LinkStation />,
-  },
+  // {
+  //   id: 'link-station',
+  //   title: `LinkStation`,
+  //   icon: <Explore />,
+  //   content: <LinkStation />,
+  // },
   {
     id: 'character-generator',
     title: `Character Generator`,
@@ -56,5 +57,11 @@ export const desktopIcons = [
     title: `Conversion Tools`,
     icon: <Packager1 />,
     content: <Conversion />,
+  },
+  {
+    id: 'yarn-audit',
+    title: `Yarn Audit Viewer`,
+    icon: <FileFind2 />,
+    content: <YarnAuditViewer />,
   },
 ];

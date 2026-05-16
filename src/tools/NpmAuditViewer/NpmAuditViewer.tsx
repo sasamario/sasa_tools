@@ -69,7 +69,7 @@ export default function NpmAuditViewer() {
         total: summaryInfo.total,
       });
 
-      for (const [packageName, packageInfo] of Object.entries(vulnerabilities)) {
+      for (const [, packageInfo] of Object.entries(vulnerabilities)) {
         const row = headers.map((h) => escapeCsv(getVulnerabilityValue(packageInfo, h))).join(",");
         rows.push(row);
       }

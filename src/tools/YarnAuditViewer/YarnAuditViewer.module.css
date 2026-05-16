@@ -1,0 +1,138 @@
+.container {
+  padding: 0 8px 8px 8px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  margin: 0 0 8px 0;
+  font-size: 20px;
+  border-bottom: 2px solid #c0c0c0;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.viewerWrapper {
+  display: flex;
+  gap: 12px;
+  height: 100%;
+  flex-direction: column;
+}
+
+.editorRow {
+  display: flex;
+  gap: 12px;
+  flex: 1;
+  min-height: 0;
+}
+
+.editorPane {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.fieldTitle {
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.textArea {
+  flex: 1;
+  min-height: 0;
+  width: 500px;
+  white-space: pre;
+  overflow-x: auto;
+  resize: none;
+  cursor: text;
+}
+
+.textArea::-webkit-scrollbar,
+.textArea::-webkit-scrollbar-thumb {
+  cursor: default;
+}
+
+.gutter {
+  width: 4px;
+}
+
+.buttonRow {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.checkboxArea {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px 0;
+}
+
+.checkboxTitle {
+  font-weight: bold;
+}
+
+.checkboxRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.checkboxItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.summaryPane {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+}
+
+.summaryTitle {
+  font-weight: bold;
+  text-align: center;
+  font-size: 12px;
+}
+
+.summaryContent {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  font-size: 12px;
+  justify-content: center;
+}
+
+.summaryItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.severityLabel {
+  font-weight: 600;
+  color: #333;
+}
+
+.severityValue {
+  font-weight: bold;
+  min-width: 30px;
+  color: #cc0000;
+}

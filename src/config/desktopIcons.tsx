@@ -1,4 +1,4 @@
-import { Time, Bookmark, Drvspace7, Explore, Calculator, Packager1, Fm20enu5, Notepad2 } from '@react95/icons';
+import { Time, Bookmark, Drvspace7, Explore, Calculator, Packager1, Fm20enu5, Notepad2, FileFind2 } from '@react95/icons';
 import PomodoroTimer from '../tools/PomodoroTimer/PomodoroTimer';
 import CommandCollection from '../tools/CommandCollection/CommandCollection';
 import CommandBuilder from '../tools/CommandBuilder/CommandBuilder';
@@ -7,6 +7,7 @@ import Kohmeisen from '../tools/Kohmeisen/Kohmeisen';
 import CharacterCount from '../tools/CharacterCount/CharacterCount';
 import Conversion from '../tools/Conversion/Conversion';
 import CharacterGenerator from '../tools/CharacterGenerator/CharacterGenerator';
+import YarnAuditViewer from '../tools/YarnAuditViewer/YarnAuditViewer';
 
 export const desktopIcons = [
   {
@@ -56,5 +57,11 @@ export const desktopIcons = [
     title: `Conversion Tools`,
     icon: <Packager1 />,
     content: <Conversion />,
+  },
+  {
+    id: 'yarn-audit',
+    title: `Yarn Audit Viewer`,
+    icon: <FileFind2 />,
+    content: <YarnAuditViewer />,
   },
 ];

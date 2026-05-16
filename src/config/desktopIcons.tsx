@@ -1,4 +1,4 @@
-import { Time, Bookmark, Drvspace7, Explore, Calculator, Packager1, Fm20enu5, Notepad2, FileFind2 } from '@react95/icons';
+import { Time, Bookmark, Drvspace7, Calculator, Packager1, Fm20enu5, Notepad2, FileFind2 } from '@react95/icons';
 import PomodoroTimer from '../tools/PomodoroTimer/PomodoroTimer';
 import CommandCollection from '../tools/CommandCollection/CommandCollection';
 import CommandBuilder from '../tools/CommandBuilder/CommandBuilder';

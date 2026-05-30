@@ -13,6 +13,7 @@ export default function DesktopIconItem({ id, title, icon, content}: DesktopIcon
   // https://react95.github.io/React95/?path=/docs/hooks-usemodal--docs
   const { restore, minimize } = useModal(); 
   const [isOpen, setIsOpen] = useState(false);
+  const [isMaximized, setIsMaximized] = useState(false);
 
   const open = () => {
     if (!isOpen) {
@@ -26,6 +27,11 @@ export default function DesktopIconItem({ id, title, icon, content}: DesktopIcon
     setIsOpen(false);
   }
 
+  const maximize = () => {
+    setIsMaximized(!isMaximized);
+    console.log('TODO... maximize');
+  }
+
   return (
     <>
       <div
@@ -37,7 +43,7 @@ export default function DesktopIconItem({ id, title, icon, content}: DesktopIcon
         <div style={{ color: 'white', fontSize: 12 }}>{title}</div>
       </div>
       {isOpen && (
-        <ToolModal isOpen={isOpen} id={id} title={title} content={content} onClose={close}></ToolModal>
+        <ToolModal isOpen={isOpen} id={id} title={title} content={content} onClose={close} onMaximize={maximize} />
       )}
     </>
   );

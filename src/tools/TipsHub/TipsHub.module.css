@@ -1,0 +1,167 @@
+.container {
+  display: grid;
+  padding: 16px;
+  min-height: 640px;
+  background: #ffffff;
+  width: 800px;
+  height: 800px;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 0;
+}
+
+.tagList {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.tagItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.tagAction {
+  margin-top: 4px;
+  margin-right: 2px;
+  display: flex;
+  justify-content: flex-end;
+  Button {
+    margin: 0;
+  }
+}
+
+.noTags,
+.empty,
+.noToc {
+  color: #666;
+  font-size: 14px;
+}
+
+.listHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+
+.listCount {
+  color: #555;
+}
+
+.listItems {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+  min-height: 0;
+  flex: 1;
+}
+
+.listItem {
+  display: block;
+  text-align: left;
+  background: #f8f8f8;
+  border: 1px solid #d1d1d1;
+  border-radius: 6px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.activeItem {
+  border-color: #303f9f;
+  background: #e8ecff;
+}
+
+.tipTitle {
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.tipDescription {
+  display: block;
+  color: #555;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.tipMeta {
+  font-size: 12px;
+  color: #888;
+}
+
+.detailWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.detailHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.detailTitle {
+  margin: 0 0 8px;
+}
+
+.detailDescription {
+  margin: 0;
+  color: #555;
+}
+
+.detailContent {
+  padding: 16px;
+  border: 1px solid #d1d1d1;
+  border-radius: 8px;
+  background: white;
+  overflow-y: auto;
+  max-height: calc(100vh - 240px);
+}
+
+.toc {
+  display: flex;
+  flex-direction: column;
+}
+
+.tocHeader {
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.tocList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tocLink {
+  display: inline-block;
+  color: #303f9f;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.heading {
+  scroll-margin-top: 90px;
+}
+
+@media (max-width: 1200px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  .toc {
+    order: 3;
+  }
+}

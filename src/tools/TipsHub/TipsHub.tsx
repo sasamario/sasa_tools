@@ -1,24 +1,18 @@
 import styles from "./TipsHub.module.css";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Frame, Fieldset, Input, Button, Checkbox } from "@react95/core";
 import fm from "front-matter";
+import TipDetail, { type TipItem } from "./TipDetail";
 
 type FrontMatterAttributes = {
   title?: string;
   description?: string;
   tags?: string[] | string;
-}
-
-type TipItem = {
-  id: string;
-  title: string;
-  description: string;
-  tags: string[];
 };
 
 // load markdown files from ./tips/*.md at build time (Vite)
 const tipModules = import.meta.glob<string>("./tips/*.md", {
-  query: "?raw",
+  query: "?raw", // ファイルの内容を文字列としてインポート
   import: "default",
   eager: true, //遅延読み込みせずビルド時に読み込みする
 });
@@ -28,7 +22,7 @@ const tipModules = import.meta.glob<string>("./tips/*.md", {
  */
 const tipList: TipItem[] = Object.entries(tipModules).map(([path, raw]) => {
   const id = path.split("/").pop()?.replace(/\.md$/, "") ?? path;
-  const { attributes } = fm<FrontMatterAttributes>(raw);
+  const { attributes, body } = fm<FrontMatterAttributes>(raw);
   const tags: string[] = Array.isArray(attributes?.tags)
     ? attributes.tags.map((t: any) => String(t))
     : [];
@@ -37,7 +31,8 @@ const tipList: TipItem[] = Object.entries(tipModules).map(([path, raw]) => {
     title: String(attributes?.title ?? id),
     description: attributes?.description ? String(attributes.description) : "",
     tags,
-  } as TipItem;
+    content: String(body),
+  };
 });
 
 const allTags = Array.from(new Set(tipList.flatMap((tip) => tip.tags))).sort();
@@ -46,6 +41,12 @@ export default function TipsHub() {
   const [searchKeyword, setSearchKeyword] = useState("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [selectedId, setSelectedId] = useState<string | null>(null);
+
+  // 選択されたTipの情報を取得（useMemoは、selectedIdが変更されたときに再計算）
+  const selectedTip = useMemo(
+    () => tipList.find((tip) => tip.id === selectedId) ?? null,
+    [selectedId]
+  );
 
   /**
    * Tipsのフィルタリング
@@ -84,6 +85,15 @@ export default function TipsHub() {
     setSearchKeyword("");
   };
 
+  if (selectedTip) {
+    // Tips選択時は、Tips詳細画面を表示
+    return (
+      <div className={styles.container}>
+        <TipDetail tip={selectedTip} onBack={() => setSelectedId(null)} />
+      </div>
+    );
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.sidebar}>
@@ -117,7 +127,7 @@ export default function TipsHub() {
         </Frame>
 
         <div className={styles.listHeader}>
-          <div>Tips 一覧</div>
+          <div className={styles.listTitle}>Tips 一覧</div>
           <div className={styles.listCount}>{filteredTips.length} 件</div>
         </div>
 
@@ -131,7 +141,13 @@ export default function TipsHub() {
             >
               <div className={styles.tipTitle}>{tip.title}</div>
               <div className={styles.tipDescription}>{tip.description}</div>
-              <div className={styles.tipMeta}>{tip.tags.join(" | ")}</div>
+              <div className={styles.tagBadges}>
+                {tip.tags.map((tag) => (
+                  <span key={tag} className={styles.tagBadge}>
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </button>
           ))}
           {filteredTips.length === 0 && (

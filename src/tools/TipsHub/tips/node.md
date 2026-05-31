@@ -18,7 +18,7 @@ npx ts-node script.ts
 ```bash
 node script.js aaa bbb
 ```
-```mjs
+```js
 const args = process.argv;
 console.log(args);
 
@@ -36,7 +36,7 @@ console.log(args);
 # 便利な標準モジュール
 ## ファイル操作 fs
 fsモジュールはファイルの読み込み、書き込み、削除などなどができる。fsはFile systemの略。
-```mjs
+```js
 import fs from 'fs';
 
 // ファイル読み込み fs.readFileSync(path[, options])

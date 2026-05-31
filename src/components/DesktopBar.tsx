@@ -8,6 +8,10 @@ export default function DesktopBar() {
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const closeAbout = () => setIsAboutOpen(false);
 
+  const onMaximize = () => {
+    console.log('TODO... maximize');
+  };
+
   const renderList = () => (
     <List>
       <List.Item icon={<HelpBook variant="16x16_4" />} onClick={() => setIsAboutOpen(true)}>
@@ -18,7 +22,7 @@ export default function DesktopBar() {
 
   return (
     <>
-      {isAboutOpen && <ToolModal isOpen={isAboutOpen} id='about' title='About this tool' content={<About />} onClose={closeAbout}></ToolModal>}
+      {isAboutOpen && <ToolModal isOpen={isAboutOpen} id='about' title='About this tool' content={<About />} onClose={closeAbout} onMaximize={onMaximize}></ToolModal>}
       <TaskBar list={renderList()} />
     </>
   );

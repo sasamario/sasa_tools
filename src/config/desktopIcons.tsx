@@ -1,4 +1,4 @@
-import { Time, Bookmark, Drvspace7, Calculator, Packager1, Fm20enu5, Notepad2, FileFind2, FileFind3 } from '@react95/icons';
+import { Time, Bookmark, Drvspace7, Calculator, Packager1, Fm20enu5, Notepad2, User6, Websrch } from '@react95/icons';
 import PomodoroTimer from '../tools/PomodoroTimer/PomodoroTimer';
 import CommandCollection from '../tools/CommandCollection/CommandCollection';
 import CommandBuilder from '../tools/CommandBuilder/CommandBuilder';
@@ -9,6 +9,7 @@ import Conversion from '../tools/Conversion/Conversion';
 import CharacterGenerator from '../tools/CharacterGenerator/CharacterGenerator';
 import YarnAuditViewer from '../tools/YarnAuditViewer/YarnAuditViewer';
 import NpmAuditViewer from '../tools/NpmAuditViewer/NpmAuditViewer';
+import TipsHub from '../tools/TipsHub/TipsHub';
 
 export const desktopIcons = [
   {
@@ -62,13 +63,19 @@ export const desktopIcons = [
   {
     id: 'yarn-audit',
     title: `Yarn Audit Viewer`,
-    icon: <FileFind2 />,
+    icon: <User6 />,
     content: <YarnAuditViewer />,
   },
   {
     id: 'npm-audit',
     title: `Npm Audit Viewer`,
-    icon: <FileFind3 />,
+    icon: <User6 />,
     content: <NpmAuditViewer />,
+  },
+  {
+    id: 'tips-hub',
+    title: `Tips Hub`,
+    icon: <Websrch style={{width: 32, height: 32}} />,
+    content: <TipsHub />,
   },
 ];

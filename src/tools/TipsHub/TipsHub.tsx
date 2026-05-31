@@ -86,6 +86,9 @@ export default function TipsHub() {
   };
 
   if (selectedTip) {
+    // Tips詳細画面からブラウザバックで戻れるように、Tips選択時にブラウザの履歴を追加
+    history.pushState({ page: "tip-detail" }, "", location.href);
+
     // Tips選択時は、Tips詳細画面を表示
     return (
       <div className={styles.container}>

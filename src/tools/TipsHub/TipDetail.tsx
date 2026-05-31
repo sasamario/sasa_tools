@@ -4,6 +4,7 @@ import remarkGfm from "remark-gfm";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import styles from "./TipsHub.module.css";
+import { use, useEffect } from "react";
 
 export type TipItem = {
   id: string;
@@ -45,6 +46,21 @@ const CodeBlock = ({ inline, className, children, ...props }: any) => {
 };
 
 export default function TipDetail({ tip, onBack }: TipDetailProps) {
+  useEffect(() => {
+    // ブラウザの戻るボタンが押されたときにonBackを呼び出してTips一覧に戻る
+    const handlePopState = () => {
+      onBack();
+    };
+
+    // ブラウザのpopstateイベントにリスナーを追加
+    window.addEventListener("popstate", handlePopState);
+
+    return () => {
+      // クリーンアップ: コンポーネントがアンマウントされるときにイベントリスナーを削除
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, [onBack]);
+
   return (
     <div className={styles.detailWrapper}>
       <div className={styles.detailHeader}>

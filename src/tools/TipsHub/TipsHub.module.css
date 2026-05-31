@@ -1,0 +1,285 @@
+.container,
+.container * {
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "游ゴシック", "Yu Gothic", sans-serif !important;
+}
+
+.container {
+  display: grid;
+  padding: 16px;
+  min-height: 640px;
+  background: #ffffff;
+  width: 1100px;
+  height: 1000px;
+  min-height: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #1d1d1d;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 0;
+}
+
+.tagList {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.tagItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.tagAction {
+  margin-top: 4px;
+  margin-right: 2px;
+  display: flex;
+  justify-content: flex-end;
+  Button {
+    margin: 0;
+  }
+}
+
+.noTags,
+.empty,
+.noToc {
+  color: #666;
+  font-size: 14px;
+}
+
+.listHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+
+.listTitle {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.listCount {
+  color: #555;
+}
+
+.listItems {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+  min-height: 0;
+  flex: 1;
+}
+
+.listItem {
+  display: block;
+  margin: 0;
+  text-align: left;
+  background: #f8f8f8;
+  border: 1px solid #d1d1d1;
+  border-radius: 6px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.activeItem {
+  border-color: #303f9f;
+  background: #e8ecff;
+}
+
+.tipTitle {
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.tipDescription {
+  display: block;
+  color: #555;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+.tagBadges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tagBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 4px;
+  border: 1px solid #c8e6e0;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #5a8b80;
+  background: linear-gradient(135deg, #f0faf7 0%, #e8f5f0 100%);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+  cursor: default;
+}
+
+.tipMeta {
+  font-size: 12px;
+  color: #888;
+}
+
+.detailWrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+  height: 100%;
+}
+
+.detailHeader {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.detailTitle {
+  margin-top: 0 !important;
+  font-size: 32px;
+  font-weight: 700;
+  padding-bottom: 6px;
+}
+
+.detailMeta {
+  margin-bottom: 12px;
+}
+
+.detailDescription {
+  margin-bottom: 8px;
+  color: #555;
+}
+
+.detailContent {
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+.detailContent::-webkit-scrollbar {
+  display: none;
+}
+
+.detailBody {
+  margin-top: 8px;
+  padding: 12px;
+  background: white;
+  border: 1px solid #d1d1d1;
+  border-radius: 4px;
+}
+
+/* 本文内のコードブロックのスクロールバー非表示 */
+.detailBody pre > div::-webkit-scrollbar {
+  display: none;
+}
+
+/* 本文内の見出し要素に対するスタイル */
+.detailBody > h1:first-child,
+.detailBody > h2:first-child,
+.detailBody > h3:first-child {
+  margin-top: 0;
+}
+
+.detailBody > h1,
+.detailBody > h2,
+.detailBody > h3 {
+  margin-top: 1em;
+  margin-bottom: 0.6em;
+  padding-bottom: 0.2em;
+}
+
+.detailBody h1 {
+  border-bottom: 1px solid #d1d1d1;
+  font-size: 2em;
+}
+
+.detailBody h2 {
+  border-bottom: 1px solid #d1d1d1;
+  font-size: 1.5em;
+}
+
+.detailBody h3 {
+  font-size: 1.25em;
+}
+
+/* 本文内のテーブル要素に対するスタイル */
+.detailBody table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+}
+
+.detailBody th,
+.detailBody td {
+  border: 1px solid #d1d1d1;
+  padding: 8px;
+  text-align: left;
+}
+
+.detailBody th {
+  background: #f6f8fa;
+  font-weight: 600;
+}
+
+/* 本文内のインラインコード要素に対するスタイル */
+.detailBody .inlineCode {
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  background-color: #f6f8fa;
+  font-family: Consolas, Monaco, "Courier New", monospace;
+  font-size: 0.9em;
+}
+
+.toc {
+  display: flex;
+  flex-direction: column;
+}
+
+.tocHeader {
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.tocList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tocLink {
+  display: inline-block;
+  color: #303f9f;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.heading {
+  scroll-margin-top: 90px;
+}
+
+@media (max-width: 1200px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  .toc {
+    order: 3;
+  }
+}

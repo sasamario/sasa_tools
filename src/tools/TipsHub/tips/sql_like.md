@@ -10,7 +10,7 @@ tags: ["SQL", "LIKE"]
 | DB | エスケープ推奨文字 |
 |---|---|
 | MySQL | `%`, `_`, `\` |
-| PostgreSQL | `%`, `_`, `\` | 
+| PostgreSQL | `%`, `_`, `\` |
 | SQL Server | `%`, `_`, `[` |
 | Oracle | `%`, `_`, `\` |
 | SQLite | `%`, `_`, `\` |

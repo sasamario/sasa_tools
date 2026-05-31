@@ -79,9 +79,6 @@
   min-height: 0;
   flex: 1;
 }
-/* .listItems::-webkit-scrollbar {
-  display: none;
-} */
 
 .listItem {
   display: block;
@@ -188,11 +185,12 @@
   border-radius: 4px;
 }
 
-/* コードブロックのスクロールバー非表示 */
+/* 本文内のコードブロックのスクロールバー非表示 */
 .detailBody pre > div::-webkit-scrollbar {
   display: none;
 }
 
+/* 本文内の見出し要素に対するスタイル */
 .detailBody > h1:first-child,
 .detailBody > h2:first-child,
 .detailBody > h3:first-child {
@@ -219,6 +217,34 @@
 
 .detailBody h3 {
   font-size: 1.25em;
+}
+
+/* 本文内のテーブル要素に対するスタイル */
+.detailBody table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+}
+
+.detailBody th,
+.detailBody td {
+  border: 1px solid #d1d1d1;
+  padding: 8px;
+  text-align: left;
+}
+
+.detailBody th {
+  background: #f6f8fa;
+  font-weight: 600;
+}
+
+/* 本文内のインラインコード要素に対するスタイル */
+.detailBody .inlineCode {
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  background-color: #f6f8fa;
+  font-family: Consolas, Monaco, "Courier New", monospace;
+  font-size: 0.9em;
 }
 
 .toc {

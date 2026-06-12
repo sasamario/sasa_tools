@@ -4,7 +4,7 @@ import CommandBuilderItem from "./CommandBuilderItem";
 
 export default function CommandBuilder() {
   return (
-    <Tabs width="650px">
+    <Tabs>
       {Object.entries(commandBuilder).map(([key, item]) => (
         <Tab key={key} title={key}>
           <CommandBuilderItem

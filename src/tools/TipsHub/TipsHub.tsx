@@ -112,14 +112,20 @@ export default function TipsHub() {
             />
           </Fieldset>
           <Fieldset legend="タグ検索">
-            <div className={styles.tagList}>
+            <div className={styles.tagSearchList}>
               {allTags.map((tag) => (
-                <label key={tag} className={styles.tagItem}>
+                <label
+                  key={tag}
+                  className={`${styles.tagSearchLabel} ${styles.tagBadge} ${selectedTags.includes(tag) ? styles.tagSearchSelected : ''}`}
+                >
                   <Checkbox
+                    className={styles.tagSearchCheckbox}
                     checked={selectedTags.includes(tag)}
                     onChange={() => toggleTag(tag)}
                   />
-                  {tag}
+                  <span className={`${styles.tagLabelText}`}>
+                    {tag}
+                  </span>
                 </label>
               ))}
             </div>

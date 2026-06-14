@@ -21,7 +21,7 @@ SPFではDNSを利用する。
 
 受信側：メール受信時に送信元のドメインのSPFレコードをDNSに問い合わせ、送信元サーバのIPが許可されているか確認
 
-```bash
+```text
 1. 送信側 メールサーバがメールを送信
 From: user@example.com  
 送信元サーバIP: xxx.x.xxx.xx  

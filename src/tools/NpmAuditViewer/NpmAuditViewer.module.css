@@ -52,7 +52,7 @@
 .textArea {
   flex: 1;
   min-height: 0;
-  width: 500px;
+  min-width: 500px;
   white-space: pre;
   overflow-x: auto;
   resize: none;

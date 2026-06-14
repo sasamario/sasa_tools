@@ -61,7 +61,7 @@ export default function Base64Conversion() {
     <section>
       <h3 className={styles.subTitle}>Base64 ↔︎ Text</h3>
       <Input className={styles.base64Input} placeholder="Base64" value={base64} onChange={handleBase64Decode} />
-      <span> ↔︎ </span>
+      <span> ↕︎ </span>
       <Input className={styles.base64Input} placeholder="Text" value={text} onChange={handleBase64Encode} />
     </section>
   );

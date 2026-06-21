@@ -199,13 +199,15 @@
 /* 本文内の見出し要素に対するスタイル */
 .detailBody > h1:first-child,
 .detailBody > h2:first-child,
-.detailBody > h3:first-child {
+.detailBody > h3:first-child,
+.detailBody > h4:first-child {
   margin-top: 0;
 }
 
 .detailBody > h1,
 .detailBody > h2,
-.detailBody > h3 {
+.detailBody > h3,
+.detailBody > h4 {
   margin-top: 1em;
   margin-bottom: 0.6em;
   padding-bottom: 0.2em;
@@ -251,6 +253,18 @@
   background-color: #f6f8fa;
   font-family: Consolas, Monaco, "Courier New", monospace;
   font-size: 0.9em;
+}
+
+/* Markdownの引用(blockquote) */
+.detailBody blockquote {
+  margin: 0 0 16px;
+  padding: 0 1em;
+  color: #656d76;
+  border-left: 0.25em solid #d0d7de;
+}
+
+.detailBody ul, .detailBody ol {
+  padding-left: 1.5em;
 }
 
 .toc {

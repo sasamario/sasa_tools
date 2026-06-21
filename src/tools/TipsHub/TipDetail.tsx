@@ -1,6 +1,7 @@
 import { Button, Frame } from "@react95/core";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import remarkBreaks from "remark-breaks";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import styles from "./TipsHub.module.css";
@@ -82,7 +83,7 @@ export default function TipDetail({ tip, onBack }: TipDetailProps) {
 
         {/* componentsでコードブロックを描画する際は、code: CodeBlockを指定 */}
         <div className={styles.detailBody}>
-          <ReactMarkdown remarkPlugins={[remarkGfm]} components={{ code: CodeBlock }}>
+          <ReactMarkdown remarkPlugins={[remarkGfm, remarkBreaks]} components={{ code: CodeBlock }}>
             {tip.content}
           </ReactMarkdown>
         </div>

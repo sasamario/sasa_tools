@@ -218,7 +218,7 @@ openssl req \
 | -out server.crt | 作成した証明書を `server.crt` として出力する |
 | -days 365 | 証明書の有効期限を365日に設定する |
 
-※本来はCSRファイルを作成後CAに提出し、CAが署名した証明書（CRTファイル）を使う流れだが、今回は自己証明書のため、`-x509`で自分で署名している。
+※本来はCSRファイルを作成後CAに提出し、CAが署名した証明書（CRTファイル）を使う流れだが、今回は自己証明書のため`-x509`で自分で署名している。
 
 ### Dockerfile側の設定
 ```Dockerfile
@@ -273,3 +273,82 @@ Apacheにはサイトごとの設定を行う、VirtualHostという仕組みが
 | SSLCertificateFile | SSL証明書(.crt)のパスを指定する |
 | SSLCertificateKeyFile | 秘密鍵(.key)のパスを指定する |
 | DocumentRoot | 公開ディレクトリを指定する |
+
+# hosts設定
+今回localhostではなく、指定したドメインでアクセスできるようにしているのでhostsの設定をする。  
+```text
+127.0.0.1 sample-docker
+```
+
+# compose.yml
+```compose.yml
+services:
+  web:
+    build:
+      context: .
+      dockerfile: docker/web/Dockerfile
+    container_name: laravel-web
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./src/Laravel:/var/www/html
+    depends_on:
+      - db
+
+  db:
+    image: postgres:17
+    container_name: laravel-db
+    environment:
+      POSTGRES_DB: test-db
+      POSTGRES_USER: test-user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: laravel-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: password
+    ports:
+      - "5050:80"
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
+```
+contextで、Dockerビルド時に参照できるファイルの起点を指定している。Dockerfileなどデパスを指定する際はcompose.ymlからのパスを指定すること。  
+
+# ビルド、コンテナ起動
+```bash
+# ビルド
+docker compose build
+
+# ビルド（Dockerfileを直したりして一から再ビルドしたい場合）
+docker compose build --no-chache
+
+# コンテナ立ち上げ
+docker compose up -d
+```
+各種起動確認  
+
+- Web: https://sample-docker/
+- pgadmin4: http://localhost:5050/
+
+DB接続する際は、Laravel側の`.env`でDBの接続情報を修正する必要あり。  
+compose.ymlに記載の内容とすること（DB_HOSTはcompose.ymlで指定したサービス名を指定すること）。  
+```text
+# 接続情報はcompose.ymlの設定値にする
+DB_CONNECTION=pgsql
+DB_HOST=db
+DB_PORT=5432
+DB_DATABASE=test-db
+DB_USERNAME=test-user
+DB_PASSWORD=password
+```
+

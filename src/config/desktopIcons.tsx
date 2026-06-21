@@ -17,8 +17,8 @@ export const desktopIcons = [
     title: 'Pomodoro Timer',
     icon: <Time style={{width: 32, height: 32}} />,
     content: <PomodoroTimer />,
-    defaultWidth: 275,
-    defaultHeight: 275,
+    defaultWidth: 300,
+    defaultHeight: 280,
   },
   {
     id: 'commands',

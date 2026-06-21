@@ -9,7 +9,7 @@ JSONデータを扱うためのコマンドラインツール。
 JSONを整形、抽出、変換、加工などする際に活用する。
 
 使うにはjqコマンドをインストールする必要がある。
-VSCodeを使っている場合は、vscode-jqという拡張機能があるのでそちらでも使うことができる。  
+VSCodeを使っている場合は、vscode-jqという拡張機能があるのでそちらでも使うことができる。
 vscode-jq：https://marketplace.visualstudio.com/items?itemName=dandric.vscode-jq&ssr=false#qna
 
 # 使い方

@@ -251,8 +251,9 @@ sites-enabled/
   ServerName sample-docker
 
   DocumentRoot /var/www/html/public
-  ErrorLog ${APACHE_LOG_DIR}/error.log
-  CustomLog ${APACHE_LOG_DIR}/access.log combined
+  # ログはDockerコンテナの標準出力に出力するため、コメントアウト
+  # ErrorLog ${APACHE_LOG_DIR}/error.log
+  # CustomLog ${APACHE_LOG_DIR}/access.log combined
 
   SSLEngine on
 

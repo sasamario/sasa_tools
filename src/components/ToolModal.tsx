@@ -106,8 +106,8 @@ export default function ToolModal({ isOpen, id, content, title, defaultWidth, de
             ]}
             dragOptions={{
               defaultPosition: {
-                x: window.innerWidth / 3,
-                y: window.innerHeight / 4,
+                x: 0,
+                y: 0,
               },
             }}
           >

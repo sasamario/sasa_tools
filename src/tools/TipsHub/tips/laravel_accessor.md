@@ -1,5 +1,5 @@
 ---
-title: "Laravel アクセサについて"
+title: "Laravel Accessor"
 description: "Laravelのアクセサに関するTips"
 tags: ["Laravel"]
 ---

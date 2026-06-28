@@ -1,6 +1,6 @@
 ---
-title: "Laravel Commandの使い方"
-description: "Laravel Commandの使い方や実装に関するTips"
+title: "Laravel Command"
+description: "Laravel Commandに関するTips"
 tags: ["Laravel"]
 ---
 

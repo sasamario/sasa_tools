@@ -1,5 +1,5 @@
 ---
-title: "Laravel Eloquentについて"
+title: "Laravel Eloquent"
 description: "LaravelのEloquentに関するTips"
 tags: ["Laravel"]
 ---

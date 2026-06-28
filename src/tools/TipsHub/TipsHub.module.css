@@ -33,13 +33,13 @@
 
 .tagSearchList .tagSearchSelected, .tagSearchList .tagSearchLabel:hover {
   background: linear-gradient(135deg, #e6f7f0 0%, #d6efe6 100%);
-  border-color: #86d5b3;
+  border-color: #7dd2ad;
   color: #0f5a48;
 }
 
 .tagSearchList .tagSearchLabel:hover {
   transition: all 0.2s ease;
-  transform: translateY(-1px);
+  transform: translateY(-3px);
 }
 
 .tagSearchList .tagSearchCheckbox {

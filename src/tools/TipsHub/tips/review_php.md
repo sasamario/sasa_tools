@@ -1,7 +1,7 @@
 ---
 title: "PHPで受けたレビュー指摘事項"
 description: "PHPやPHPフレームワークで受けたレビュー指摘事項や注意点に関するTips"
-tags: ["PHP", "Laravel", "レビュー"]
+tags: ["PHP", "Laravel", "レビュー", "開発"]
 ---
 
 # PHP

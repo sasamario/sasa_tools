@@ -1,7 +1,7 @@
 ---
 title: "送信ドメイン認証（SPF/DKIM/DMARC）について"
 description: "送信ドメイン認証（SPF/DKIM/DMARC）の仕組み"
-tags: ["SPF / DKIM / DMARC"]
+tags: ["メール"]
 ---
 
 # 送信ドメイン認証

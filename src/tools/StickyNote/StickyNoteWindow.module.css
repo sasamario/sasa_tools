@@ -1,0 +1,13 @@
+.body {
+  padding: 8px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-size: 13px;
+  line-height: 1.5;
+  overflow-y: auto;
+}
+
+.empty {
+  color: #999;
+  font-style: italic;
+}

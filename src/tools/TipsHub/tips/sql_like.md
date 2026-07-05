@@ -1,7 +1,7 @@
 ---
 title: "LIKE検索時の特殊文字エスケープ処理について"
 description: "LIKE検索する際にエスケープ処理が必要な特殊文字と置換処理に関するTips"
-tags: ["SQL", "LIKE"]
+tags: ["SQL"]
 ---
 
 # LIKE検索時の特殊文字エスケープ

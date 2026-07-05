@@ -1,4 +1,4 @@
-import { Time, Bookmark, Drvspace7, Calculator, Packager1, Fm20enu5, Notepad2, User6, Websrch } from '@react95/icons';
+import { Time, Bookmark, Drvspace7, Calculator, Packager1, Fm20enu5, Notepad2, User6, Websrch, FilePin } from '@react95/icons';
 import PomodoroTimer from '../tools/PomodoroTimer/PomodoroTimer';
 import CommandCollection from '../tools/CommandCollection/CommandCollection';
 import CommandBuilder from '../tools/CommandBuilder/CommandBuilder';
@@ -10,6 +10,7 @@ import CharacterGenerator from '../tools/CharacterGenerator/CharacterGenerator';
 import YarnAuditViewer from '../tools/YarnAuditViewer/YarnAuditViewer';
 import NpmAuditViewer from '../tools/NpmAuditViewer/NpmAuditViewer';
 import TipsHub from '../tools/TipsHub/TipsHub';
+import StickyNoteManager from '../tools/StickyNote/StickyNoteManager';
 
 export const desktopIcons = [
   {
@@ -97,5 +98,13 @@ export const desktopIcons = [
     content: <TipsHub />,
     defaultWidth: 800,
     defaultHeight: 700,
+  },
+  {
+    id: 'sticky-note',
+    title: 'Sticky Note',
+    icon: <FilePin style={{ width: 32, height: 32 }} />,
+    content: <StickyNoteManager />,
+    defaultWidth: 700,
+    defaultHeight: 400,
   },
 ];

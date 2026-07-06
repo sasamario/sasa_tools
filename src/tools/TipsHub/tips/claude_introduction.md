@@ -43,20 +43,29 @@ Macの場合、`code ~/.claude/settings.json`で設定ファイルをVSCodeで�
 ※Windowsなら、`C:\Users\ユーザー名\.claude\settings.json`にあると思う
 ```json
 {
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "theme": "dark",
   "permissions": {
     "deny": [
-      "Read(./.env)",
-      "Read(./.env.*)",
+      "Bash(curl *)",
       "Read(**/.env)",
-      "Read(**/.env.*)"
+      "Read(**/.env.*)",
+      "Bash(git push *)"
     ]
-  }
+  },
+  "effortLevel": "medium"
 }
 ```
-今回プロジェクト設定ではなくUserスコープで設定するため、`**/.env`のようにワイルドカードを使って階層関係なく.envを読まないようにしている。
-軽く解説するとpermissions.denyで指定の操作をしないような設定をすることができる。
+- `"$schema": "https://json.schemastore.org/claude-code-settings.json"`
+  - Claude Code設定の公式JSONスキーマを指している。これによりVSCodeでオートコンプリートやインライン検証が有効になる
+- permissions.denyで指定の操作をしないよう設定
+  - Userスコープ（全体設定）で上記指定しているため`**/.env`のようにワイルドカードを使って階層関係なく指定している　※ただ、ドキュメントを見ると`(.env)`と`(**/.env)`は同じらしい...
+
+
+**★permissions.denyの設定だと完全に防ぐことはできないようなので、上記設定は気休め程度とのこと（お願い程度）**
+→より確実に防ぐためにはhooksで対応する必要があるとのこと。
 
 ### 参考
 - [Claude Code の設定](https://code.claude.com/docs/ja/settings)
+- [Claude Code Docs 権限ルール構文](https://code.claude.com/docs/ja/permissions#permission-rule-syntax)
 - [ClaudeCodeに.envを勝手に読ませないためのベストプラクティス](https://zenn.dev/caen/articles/aa1359184dfef2)

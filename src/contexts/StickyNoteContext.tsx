@@ -55,7 +55,7 @@ export function StickyNoteProvider({ children }: { children: React.ReactNode }) 
     const note: StickyNote = {
       id: crypto.randomUUID(),
       ...draft,
-      isVisible: false,
+      isVisible: true,
       createdAt: Date.now(),
     };
     persist([...notes, note]);

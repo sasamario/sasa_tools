@@ -10,7 +10,6 @@ const COLOR_MAP: Record<StickyNote['color'], string> = {
   pink: '#ffdde8',
 };
 
-const NOTE_WIDTH = 240;
 const MAX_BODY_HEIGHT = 340;
 
 type Props = {
@@ -24,7 +23,7 @@ export default function StickyNoteWindow({ note, index, onClose }: Props) {
   const offset = index * 100;
   const modalId = `sticky-${note.id}`;
   const { restore } = useModal();
-  const defaultX = window.innerWidth - NOTE_WIDTH - 40;
+  const defaultX = window.innerWidth * 0.75;
 
   useEffect(() => {
     restore(modalId);
@@ -48,7 +47,7 @@ export default function StickyNoteWindow({ note, index, onClose }: Props) {
       <Modal.Content
         p="0"
         style={{
-          width: NOTE_WIDTH,
+          minWidth: 240,
           backgroundColor: bgColor,
           marginBlockStart: 0,
           marginInlineEnd: 0,

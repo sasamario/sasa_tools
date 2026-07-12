@@ -75,6 +75,115 @@ create(@Body() createUserDto: CreateUserDto) { ... }
 export class UsersController { ... }
 ```
 
+`@UsePipes` で `ValidationPipe` を指定すると、ルート単位でバリデーションを有効にできる。
+`ValidationPipe` はリクエストデータを DTO クラスのデコレータ定義に従って検証・変換する。
+
+```ts
+@Post()
+@UsePipes(new ValidationPipe({ transform: true }))
+create(@Body() createUserDto: CreateUserDto) { ... }
+```
+
+`transform: true` を指定すると、リクエストの値を DTO クラスのインスタンスに自動変換する（`@Type()` なしでもプリミティブ型の変換が効く）。
+→クエリパラメータは数値も文字列で届くが、`transform: true`を指定することで単純な変換であれば型アノテーションを見て変換してくれる
+（Date型などは対応していないようなので`@Type`で対応する必要がある）。
+
+## バリデーション系（class-validator / class-transformer）
+
+`class-validator` と `class-transformer` を併用して DTO のバリデーションを行う。
+`ValidationPipe` をグローバルまたはルート単位で適用することで有効になる。
+
+```ts
+// main.ts でグローバル適用
+app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
+```
+
+### 文字列
+
+| デコレータ | 説明 |
+|---|---|
+| `@IsString()` | 文字列であることを検証する |
+| `@IsNotEmpty()` | 空文字・null・undefined でないことを検証する |
+| `@IsEmail()` | メールアドレス形式であることを検証する |
+| `@IsUrl()` | URL 形式であることを検証する |
+| `@MinLength(n)` | 最小文字数を検証する |
+| `@MaxLength(n)` | 最大文字数を検証する |
+| `@Matches(regex)` | 正規表現にマッチすることを検証する |
+
+### 数値
+
+| デコレータ | 説明 |
+|---|---|
+| `@IsNumber()` | 数値であることを検証する |
+| `@IsInt()` | 整数であることを検証する |
+| `@Min(n)` | 最小値を検証する |
+| `@Max(n)` | 最大値を検証する |
+| `@IsPositive()` | 正の数であることを検証する |
+| `@IsNegative()` | 負の数であることを検証する |
+
+### 真偽値・存在チェック
+
+| デコレータ | 説明 |
+|---|---|
+| `@IsBoolean()` | 真偽値であることを検証する |
+| `@IsOptional()` | 値が `undefined` の場合はバリデーションをスキップする |
+| `@IsDefined()` | `undefined` でないことを検証する（`null` は許可） |
+
+### 配列・オブジェクト
+
+| デコレータ | 説明 |
+|---|---|
+| `@IsArray()` | 配列であることを検証する |
+| `@ArrayMinSize(n)` | 配列の最小要素数を検証する |
+| `@ArrayMaxSize(n)` | 配列の最大要素数を検証する |
+| `@ValidateNested({ each?: boolean })` | ネストしたオブジェクトを再帰的にバリデーションする。`@Type()` と併用が必須 |
+
+### 日付・Enum
+
+| デコレータ | 説明 |
+|---|---|
+| `@IsDate()` | Date オブジェクトであることを検証する（`@Type(() => Date)` と併用） |
+| `@IsDateString()` | ISO 8601 形式の日付文字列であることを検証する |
+| `@IsEnum(EnumType)` | 指定した Enum の値であることを検証する |
+
+### class-transformer
+
+| デコレータ | 説明 |
+|---|---|
+| `@Type(() => TargetClass)` | JSON → クラスインスタンスへの変換を指定する。ネストオブジェクトや Date 型に必要 |
+| `@Transform(({ value }) => ...)` | 任意の変換ロジックを定義する |
+| `@Exclude()` | シリアライズ時にフィールドを除外する |
+| `@Expose()` | `excludeExtraneousValues` 使用時に明示的に含めるフィールドを指定する |
+
+### 使用例
+
+```ts
+import { IsString, IsEmail, IsInt, Min, IsOptional, ValidateNested, MaxLength } from 'class-validator';
+import { Type } from 'class-transformer';
+
+export class CreateUserDto {
+  @IsString()
+  @MaxLength(50)
+  name: string;
+
+  @IsEmail()
+  email: string;
+
+  @IsInt()
+  @Min(0)
+  age: number;
+
+  @IsOptional()
+  @IsString()
+  bio?: string;
+
+  @ValidateNested()
+  @Type(() => AddressDto)
+  address: AddressDto;
+}
+```
+
+> `@IsOptional()` はフィールドが `undefined` のときだけスキップする。`null` を渡すとバリデーションが走るので注意。
 
 ## Swagger（@nestjs/swagger）系
 
@@ -167,3 +276,5 @@ export class RequestScopedService { ... }
 - [NestJS Docs - Providers](https://docs.nestjs.com/providers)
 - [NestJS Docs - Modules](https://docs.nestjs.com/modules)
 - [NestJS Docs - OpenAPI (Swagger)](https://docs.nestjs.com/openapi/introduction)
+- [class-validator](https://github.com/typestack/class-validator)
+- [class-transformer](https://github.com/typestack/class-transformer)

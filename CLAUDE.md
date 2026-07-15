@@ -62,6 +62,10 @@ tags: ["タグ名"]
 - タグは複数指定可能: `tags: ["Laravel", "DB"]`
 - 検索はタイトル・説明・タグに対してキーワード検索 + タグの AND フィルタリング
 
+### Tip 執筆ルール
+
+- 章と章の間に `---`（水平線）を入れない
+
 ## TypeScript
 
 - strict モード有効（`noUnusedLocals`, `noUnusedParameters` 含む）

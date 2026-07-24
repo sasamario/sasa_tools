@@ -37,6 +37,7 @@ FROM php:8.3-apache
 # OSパッケージのインストール
 RUN apt-get update && apt-get install -y \
   git \
+  vim \
   unzip \
   zip \
   libpq-dev \
@@ -87,6 +88,7 @@ WORKDIR /var/www/html
 # OSパッケージのインストール
 RUN apt-get update && apt-get install -y \
   git \
+  vim \
   unzip \
   zip \
   libpq-dev \
@@ -102,6 +104,7 @@ RUN apt-get update && apt-get install -y \
 | パッケージ | 用途 |
 |-----------|------|
 | git / unzip / zip | Composer実行時のパッケージ取得・展開・圧縮処理に使用 |
+| vim | コンテナ内でファイル編集などする際に使用 |
 | libpq-dev | PHPのPostgreSQL関連拡張（pdo_pgsql等）のビルドに必要 |
 | libxml2-dev | PHPのXML関連拡張（xml等）のビルドに必要 |
 | libonig-dev | PHPのマルチバイト文字列拡張（mbstring）のビルドに必要 |

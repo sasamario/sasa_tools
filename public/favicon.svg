@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="sasa-tools">
+  <defs><linearGradient id="gb" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#63B78D"/><stop offset="1" stop-color="#4A9670"/>
+  </linearGradient></defs>
+  <rect width="64" height="64" rx="14" fill="#14603C"/>
+  <polygon points="8,31 56,31 51,21 13,21" fill="#052A18"/>
+  <path d="M27.75 15.55 C27.75 12.37 25.66 10.25 23 10.25 C20.34 10.25 18.25 12.37 18.25 15.55 C18.25 18.73 20.34 20.09 23 21 C25.66 21.91 27.75 23.27 27.75 26.45 C27.75 29.63 25.66 31.75 23 31.75 C20.34 31.75 18.25 29.63 18.25 26.45" fill="none" stroke="#FFFFFF" stroke-width="6.5" stroke-linecap="round"/>
+  <rect x="33" y="7" width="16" height="6.5" rx="1.5" fill="#FFFFFF"/>
+  <rect x="37.75" y="7" width="6.5" height="28" rx="1.5" fill="#FFFFFF"/>
+  <polygon points="9,32 55,32 52.2,56 11.8,56" fill="url(#gb)" stroke="url(#gb)" stroke-width="2" stroke-linejoin="round"/>
+  <rect x="9.6" y="41.5" width="44.8" height="2.3" fill="#37795A"/>
+  <g fill="#B7E3CB">
+    <rect x="17" y="38" width="7" height="9.3" rx="1.5"/>
+    <rect x="40" y="38" width="7" height="9.3" rx="1.5"/>
+  </g>
+  <g fill="#37795A">
+    <rect x="17" y="41.8" width="7" height="1.7"/>
+    <rect x="40" y="41.8" width="7" height="1.7"/>
+  </g>
+</svg>

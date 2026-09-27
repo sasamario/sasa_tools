@@ -112,7 +112,7 @@ export class UsersService {
 NestJS アプリは必ず **ルートモジュール（AppModule）** を起点にツリー構造を構成する。  
 機能ごとにモジュールを分割し、AppModule に `imports` で取り込む。
 
-```
+```text
 AppModule
 ├── UsersModule
 │   ├── UsersController
@@ -156,7 +156,7 @@ bootstrap();
 
 ## リクエストの処理の流れ
 
-```
+```text
 HTTP リクエスト
     ↓
 [Middleware]         ← 共通処理（認証・ログ等）
